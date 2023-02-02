@@ -18,7 +18,7 @@ ModuleVersion = '0.1.0.0'
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'b5f451be-e824-4204-888d-82a8c9035419'
+GUID = '80cddc04-a590-43e4-ac46-d103a75701af'
 
 # Author of this module
 Author = 'mnoxx / Codedus'
