@@ -1,5 +1,3 @@
-## Getting Started
-The New-Quicklog function is a PowerShell script that outputs a formatted log message to the console.
 [![pongologo](./quicklog-logo.svg)](https://gitlab.snowlab.tk/powershell/quicklog/-/blob/main/quicklog-logo.svg)
 --
 [![Maintainer](https://img.shields.io/badge/Maintainer-mnoxx-blue??&stype=flat&logo=Personio&logoColor=blue)](https://gitlab.snowlab.tk/mnoxx)
