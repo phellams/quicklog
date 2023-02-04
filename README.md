@@ -9,3 +9,10 @@
 
 ## Getting Started
 The New-Quicklog function is a PowerShell script that outputs a formatted log message to the console.
+
+### Blockquote Tags
+
+> Using the syntax below to specifiy your **name, time and color** to vary the blockquotes.
+> :bust_in_silhouette: [time=Sun, Jun 28, 2015 9:59 PM] [color=#907bf7]
+> > Even support nested blockquotes!
+> > :bust_in_silhouette: [time=Sun, Jun 28, 2015 9:47 PM] [color=red]
