@@ -24,7 +24,7 @@
   <line id="linesperator" class="linesperator" y2="53" x1="60" x2="60" y1="9" />
   <text x="64" y="27" id="projectname" class="projectname">quicklog<!--Animate Project Name--><animate attributeName="fill" values="#347ee3;#347ee3;#347ee3;#e34134;#347ee3" dur="15s" repeatCount="indefinite" /></text>
   <!--Template Holder > ProjectName-->
-  <text id="name" class="name" x="63" y="41">@mnoxx</text>
+  <text id="name" class="name" x="63" y="41">@snoonx</text>
   <!--Version Title-->
   <text id="versiontitle" class="versiontitle" x="64" y="52">Version:</text>
   <!--Version Number-->
