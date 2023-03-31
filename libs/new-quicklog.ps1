@@ -1,6 +1,6 @@
 using module G:\devspace\projects\powershell\psgeneral\libs\get-elapsed\get-elapsed.psm1
-using module ..\..\powerunicode\powerunicode-class.psm1
-using module ..\..\propture\get-propture.ps1
+using module submodules/propture/get-propture.ps1 
+using module submodules/powerunicode/powerunicode-class.psm1
 <#  -------------------------------------------------------------------------------------------------------
 /** ******************************************************************************************************* 
 #!   NAME--------: quicklog
@@ -24,11 +24,11 @@ function New-QuickLog() {
     )
     if ($message -like "*@{pt:{*") { $message_exploded = $message.split('@').split('}}') } else { $message_exploded = $null }
     if($null -eq $Unicode -or $unicode.length -eq 0 ){ $Unicode = "#1F438" }
-    $unicodeError = "#2B55"
-    $unicodeSuccess = "#2705"
-    $unicodeInfo = "#1FAA7"
+    $unicodeError = "#1FAD6"
+    $unicodeSuccess = "#1F350"
+    $unicodeInfo = "#2615"
     $unicodeComplete = "#1F375"
-    $unicodeAction = "#1F527"
+    $unicodeAction = "#1F963"
     $unicodeSperator = "#2194"
     $unicodeLeftArrow = "#25B6"
     $unicodePlus = "#2795"
@@ -55,7 +55,7 @@ function New-QuickLog() {
         switch ($type) {
             success  { Write-Host -ForegroundColor green     "$([powerunicode]::printByUnicode($unicodeSuccess)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
             error    { Write-Host -ForegroundColor red       "$([powerunicode]::printByUnicode($unicodeError)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            info     { Write-Host -ForegroundColor blue      "$([powerunicode]::printByUnicode($unicodeInfo))  $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
+            info     { Write-Host -ForegroundColor blue      "$([powerunicode]::printByUnicode($unicodeInfo)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
             complete { Write-Host -ForegroundColor darkgreen "$([powerunicode]::printByUnicode($unicodeComplete)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
             action   { Write-Host -ForegroundColor yellow    "$([powerunicode]::printByUnicode($unicodeAction)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }    
         }
@@ -100,11 +100,11 @@ function New-QuickLog() {
     }
     # Message Area ----------------
     switch ($type) {
-        success { Write-Host -ForegroundColor green " $([powerunicode]::printByUnicode($unicodeSperator)) Success $(get-elapsed -Datetime $date -Formattedstring)" }
-        error { Write-Host -ForegroundColor red " $([powerunicode]::printByUnicode($unicodeSperator)) Error $(get-elapsed -Datetime $date -Formattedstring)" }
-        info { Write-Host -ForegroundColor blue " $([powerunicode]::printByUnicode($unicodeSperator)) info $(get-elapsed -Datetime $date -Formattedstring)" }
-        complete { Write-Host -ForegroundColor darkgreen " $([powerunicode]::printByUnicode($unicodeSperator)) Complete $(get-elapsed -Datetime $date -Formattedstring)" }
-        action { Write-Host -ForegroundColor yellow " $([powerunicode]::printByUnicode($unicodeSperator)) Action $(get-elapsed -Datetime $date -Formattedstring)" }
+        success { Write-Host -ForegroundColor green " $([powerunicode]::printByUnicode($unicodeSperator)) S $(get-elapsed -Datetime $date -Formattedstring)" }
+        error { Write-Host -ForegroundColor red " $([powerunicode]::printByUnicode($unicodeSperator)) E $(get-elapsed -Datetime $date -Formattedstring)" }
+        info { Write-Host -ForegroundColor blue " $([powerunicode]::printByUnicode($unicodeSperator)) I $(get-elapsed -Datetime $date -Formattedstring)" }
+        complete { Write-Host -ForegroundColor darkgreen " $([powerunicode]::printByUnicode($unicodeSperator)) C $(get-elapsed -Datetime $date -Formattedstring)" }
+        action { Write-Host -ForegroundColor yellow " $([powerunicode]::printByUnicode($unicodeSperator)) A $(get-elapsed -Datetime $date -Formattedstring)" }
     }
     
 }

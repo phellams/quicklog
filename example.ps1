@@ -3,6 +3,7 @@ using module .\libs\new-quicklog.ps1
 new-quicklog -name "QuickLog" -message "Action Message" -type "action"
 new-quicklog -name "QuickLog" -message "Action Message with propture @{pt:{parsevalue1=myvale}}" -type "action"
 new-quicklog -name "QuickLog" -message "Action Message with propture @{pt:{parsevalue1=myvale}} and custom quicklog logo" -type "action" -unicode "#1F41F"
+new-quicklog -name "QuickLog" -message "Action Message" -type "action" -SubMessage
 new-quicklog -name "QuickLog" -message "Action Message with propture @{pt:{parsevalue1=myvale}} and custom quicklog logo and is a submessage" -type "action" -unicode "#1F41F" -SubMessage
 # INFO
 new-quicklog -name "QuickLog" -message "info Message" -type "info"

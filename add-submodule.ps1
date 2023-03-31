@@ -1,0 +1,1 @@
+git submodule add -b Main https://gitlab.snowlab.tk/powershell/powerunicode.git .\libs\submodules\powerunicode
