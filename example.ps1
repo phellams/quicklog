@@ -25,10 +25,6 @@ new-quicklog -name "QuickLog" -message "error Message with propture @{pt:{parsev
 new-quicklog -name "QuickLog" -message "error Message with propture @{pt:{parsevalue1=myvale}} and custom quicklog logo" -type "error" -unicode "#1F41F"
 new-quicklog -name "QuickLog" -message "error Message with propture @{pt:{parsevalue1=myvale}} and custom quicklog logo and is a submessage" -type "error" -unicode "#1F41F" -SubMessage
 
-#new-quicklog -name "QuickLog" -message "Outputing Info Message with proptune @{pt:{prop1=MyVal,prop2=myval}}" -type "info"
-#new-quicklog -name "QuickLog" -message "This is a submessage" -type "S" -SubMessage
-#new-quicklog -name "QuickLog" -message "This is a submessage" -type "S" -SubMessage
-#new-quicklog -name "QuickLog" -message "Outputing Info Message with proptune @{pt:{prop1=MyVal,prop2=myval}}" -type "info"
 
 
 #UTF codes
