@@ -45,19 +45,19 @@ function New-QuickLog() {
     }
     if($SubMessage -eq $true){
         switch ($type) {
-            success  { Write-Host -ForegroundColor green "      $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            error    { Write-Host -ForegroundColor red "      $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            info     { Write-Host -ForegroundColor blue "       $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            complete { Write-Host -ForegroundColor darkgreen "      $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            action   { Write-Host -ForegroundColor yellow "    $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
+            success  { Write-Host -ForegroundColor green "      " -nonewline; }
+            error    { Write-Host -ForegroundColor red "      " -nonewline; }
+            info     { Write-Host -ForegroundColor blue "      " -nonewline; }
+            complete { Write-Host -ForegroundColor darkgreen "      " -nonewline; }
+            action   { Write-Host -ForegroundColor yellow "      " -nonewline; }
         }
     }else{
         switch ($type) {
-            success  { Write-Host -ForegroundColor green "$([powerunicode]::printByUnicode($unicodeSuccess))$([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            error    { Write-Host -ForegroundColor red "$([powerunicode]::printByUnicode($unicodeError))$([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            info     { Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($unicodeInfo))$([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            complete { Write-Host -ForegroundColor darkgreen "$([powerunicode]::printByUnicode($unicodeComplete))$([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
-            action   { Write-Host -ForegroundColor yellow "$([powerunicode]::printByUnicode($unicodeAction))$([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }    
+            success  { Write-Host -ForegroundColor green     "$([powerunicode]::printByUnicode($unicodeSuccess)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
+            error    { Write-Host -ForegroundColor red       "$([powerunicode]::printByUnicode($unicodeError)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
+            info     { Write-Host -ForegroundColor blue      "$([powerunicode]::printByUnicode($unicodeInfo))  $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
+            complete { Write-Host -ForegroundColor darkgreen "$([powerunicode]::printByUnicode($unicodeComplete)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }
+            action   { Write-Host -ForegroundColor yellow    "$([powerunicode]::printByUnicode($unicodeAction)) $([powerunicode]::printByUnicode($unicodeLeftArrow)) " -nonewline; }    
         }
     }
     # Message Area ----------------
