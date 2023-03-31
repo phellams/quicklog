@@ -1,7 +1,7 @@
 
 <#PSScriptInfo
 
-.VERSION 0.1.0.0
+.VERSION 0.0.48.0
 
 .GUID 4172032c-d164-4985-896d-d60d4c31cbdd
 
@@ -41,3 +41,4 @@ https://gitlab.snowlab.tk/powershell/quicklog/-/blob/main/Releases.md
 Param()
 
 
+. $PSScriptroot/libs/New-Quicklog.ps1

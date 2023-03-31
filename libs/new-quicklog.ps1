@@ -1,4 +1,4 @@
-using module ..\..\get-elapsed\get-elapsed.psm1
+using module G:\devspace\projects\powershell\psgeneral\libs\get-elapsed\get-elapsed.psm1
 using module ..\..\powerunicode\powerunicode-class.psm1
 using module ..\..\propture\get-propture.ps1
 <#  -------------------------------------------------------------------------------------------------------
