@@ -1,101 +1,191 @@
-using module G:\devspace\projects\powershell\psgeneral\libs\get-elapsed\get-elapsed.psm1
-using module ..\..\powerunicode\powerunicode-class.psm1
-using module ..\..\propture\get-propture.ps1
+using module .\get-elapsed.psm1
+using module submodules\propture\get-propture.ps1 
+using module submodules\powerunicode\powerunicode.psm1
+<#  -------------------------------------------------------------------------------------------------------
+/** ******************************************************************************************************* 
+#!   NAME--------: quicklog
+##   AUTHER------: mnoxx | codedus
+#!   VERSION-----: 0.1.2
+#?   DESCRIPTION-: Simple function to output to console log messages, wrapper for write-host
+#?                 can be used for any script 
+#?                 
+*?   SUNMODULES--: Get-Elapsed, Get-Propture, PowerUnicode
+*            
+##   BUILD ENV---: BUILD: Powershellcore 7.3.1
+*?   LICENCE-----: MIT
+*********************************************************************************************************#>
 
 class QuickLog {
     [string]$name
     [string]$type
     [string]$unicode
     [bool]$submessage
-    [DateTime]$date
+    [string]$datestring
+    [datetime]$date
     [string]$message
     [pscustomobject]$icons
+    [bool]$logdate
+    [bool]$logfile
 
-    [string]$unicodeError = "#2B55"
-    [string]$unicodeSuccess = "#2705"
-    [string]$unicodeInfo = "#1FAA7"
-    [string]$unicodeComplete = "#1F375"
-    [string]$unicodeAction = "#1F527"
-    [string]$unicodeSperator = "#2194"
-    [string]$unicodeLeftArrow = "#25B6"
-    [string]$unicodePlus = "#2795"
-    [string]$unicodeArrorDiagDown = "#2198"
-    [string]$unicodeDownCurvedArrow = "#21AA"
-
-    QuickLog([string]$name, [string]$message, [string]$type, [string]$unicode, [bool]$submessage) {
+    QuickLog([string]$name) {
         $this.icons = [PSCustomObject]@{
-            Error           = "#2B55" # 🐟
-            Success         = "#2705"
-            Info            = "#1FAA7"
-            Complete        = "#1F375"
-            Action          = "#1F527"
-            Separator       = "#2194"
-            LeftArrow       = "#25B6"
+            Error           = "#1F980"
+            Success         = "#1F340"
+            Info            = "#1FAD0"
+            Complete        = "#2705"
+            Action          = "#1F331"
+            Separator       = "#21A4"
+            LeftArrow       = "#2771"
             Plus            = "#2795"
             ArrowDiagDown   = "#2198"
             DownCurvedArrow = "#21AA"
+            logtime         = "#231A"
+            download        = "#23EC"
+            upload          = "#1F347"
+            request         = "#1F310" # 🌐
+            response        = "#1F311" # 🌑
         }
-        
         $this.name = $name
+        $this.date = Get-Date
+        $this.logdate = $false
+        $this.unicode = "#1F43D"
+    }
+
+    [void] enablelogdate() {
+        $this.logdate = $true
+    }
+
+    [void] enablelogfile([string]$path) {
+        if(test-path -path $path){
+            Start-Transcript -path "$path\documents\$($this.name).log" -Append
+        }else{
+            Start-Transcript -path "$env:HOMEDRIVE$env:HOMEPATH\documents\$($this.name).log" -Append
+        }
+    }
+
+    [void]WriteLog([string]$message, [string]$type, [string]$unicode, [bool]$submessage) {
+        $this.datestring = Get-Date -Format "hh:mm:ss"
         $this.message = $message
         $this.type = $type
         $this.unicode = $unicode
         $this.submessage = $submessage
-        if ($this.unicode -eq $null -or $this.unicode.length -eq 0) {
-            $this.unicode = "#1F438"
+        if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
+        if ($message -like "*@{pt:{*") { $message_exploded = $message.split('@').split('}}') } else { $message_exploded = $null }
+
+        write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
+        write-host -ForegroundColor yellow "[" -nonewline;
+        write-host -ForegroundColor gray "$($this.name)" -NoNewline;
+
+        if ($this.submessage -eq $true) {
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]" -NoNewline;
         }
-        $this.date = Get-Date
+        else {
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
+        }
+        if ($this.submessage -eq $true) {
+            switch ($type) {
+                success { Write-Host -ForegroundColor green "     " -nonewline; }
+                error { Write-Host -ForegroundColor red "     " -nonewline; }
+                info { Write-Host -ForegroundColor blue "     " -nonewline; }
+                complete { Write-Host -ForegroundColor darkgreen "     " -nonewline; }
+                action { Write-Host -ForegroundColor yellow "     " -nonewline; }
+                find {}
+                request{}
+                response{}
+            }
+        }
+        else {
+            switch ($type) {
+                success { Write-Host -ForegroundColor green     "$([powerunicode]::printByUnicode($this.icons.Success))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                error { Write-Host -ForegroundColor red       "$([powerunicode]::printByUnicode($this.icons.error))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                info { Write-Host -ForegroundColor blue      "$([powerunicode]::printByUnicode($this.icons.info))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                complete { Write-Host -ForegroundColor darkgreen "$([powerunicode]::printByUnicode($this.icons.complete))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                action { Write-Host -ForegroundColor yellow    "$([powerunicode]::printByUnicode($this.icons.action))$([powerunicode]::printByUnicode($this.icons.leftArrow)) " -nonewline; }    
+            }
+        }
+        # Message Area ----------------
+        if ($null -ne $message_exploded) {
+
+            foreach ($emsp in $message_exploded) {
+                if ($emsp -like "*{pt:{*") {
+                    $emsp_pt_removed = $emsp -replace "{pt:{", ""
+                    $props = Get-ProptureSD -stringdata $emsp_pt_removed
+                    foreach ($propname in $props.keys) {
+                        $value = $props[$propname]
+                        if ( $type -eq "error") {
+                            write-host -foregroundColor Magenta "$propname" -nonewline; write-host ":" -nonewline; write-host " " -nonewline; write-host -foregroundColor darkgray "$value" -nonewline; write-host "" -nonewline;
+                        }
+                        else {
+                            write-host -foregroundColor Magenta "$propname" -nonewline; write-host ":" -nonewline; write-host " " -nonewline; write-host -foregroundColor darkgray "$value" -nonewline; write-host "" -nonewline;
+                        }
+                    }
+                }
+                else {
+                    if ( $type -eq "error") {
+                        write-host -foregroundColor red $emsp -NoNewline;
+                    }
+                    else {
+                        write-host $emsp -NoNewline; 
+                    }
+                }
+            }
+        }
+        elseif ($null -eq $message_exploded) {
+            if ( $type -eq "error") {
+                write-host -ForegroundColor red $message -nonewline;
+            }
+            else {
+                write-host $message -nonewline;
+            }
+        }
+        else {
+
+        }
+        # Message Area ----------------
+        switch ($type) {
+            success { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) s-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
+            error { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) e-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
+            info { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) i-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
+            complete { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) c-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
+            action { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) a-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
+        }
+    }
+    [string]buildprogressbar([int]$percent){
+        # 25 is the number of characters in the progress bar
+        $barcount = 50
+        $bar = ""
+        $bar = $bar + "["
+        $bar = $bar + ("-" * [math]::floor(($barcount * $percent) / 100))
+        $bar = $bar + ">"
+        $bar = $bar + (" " * [math]::floor($barcount - (($barcount * $percent) / 100)))
+        $bar = $bar + "]"
+        return $bar
     }
 
-    [void]WriteLog() {
-        $message_exploded = $null
-        if ($this.message -like "*@{pt:{*") {
-            $message_exploded = $this.message.split('@').split('}}')
-        }
+    [void]Writeprogress([PSCustomObject]$stats) {
+        
+        $barcount = 25
+        
+        write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
+        write-host -ForegroundColor yellow "[" -nonewline;
+        write-host -ForegroundColor gray "$($this.name)" -NoNewline;
 
-        Write-Host -ForegroundColor Yellow "[" -NoNewline
-        Write-Host "$([powerunicode]::printByUnicode($this.unicode))" -NoNewline
-        Write-Host -ForegroundColor Magenta "-$($this.name)" -NoNewline
-        if ($this.submessage) {
-            Write-Host -ForegroundColor Yellow "]" -NoNewline
+        if ($stats.submessage -eq $true) {
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]" -NoNewline;
         }
         else {
-            Write-Host -ForegroundColor Yellow "]$([powerunicode]::printByUnicode($this.unicodeSperator))" -NoNewline
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
         }
 
-        if ($this.submessage) {
-            switch ($this.type) {
-                "success" { Write-Host -ForegroundColor Green "      $([powerunicode]::printByUnicode($this.unicodeLeftArrow)) " -NoNewline }
-                "error" { Write-Host -ForegroundColor Red "      $([powerunicode]::printByUnicode($this.unicodeLeftArrow)) " -NoNewline }
-                "info" { Write-Host -ForegroundColor Blue "       $([powerunicode]::printByUnicode($this.unicodeLeftArrow)) " -NoNewline }
-                "complete" { Write-Host -ForegroundColor DarkGreen "      $([powerunicode]::printByUnicode($this.unicodeLeftArrow)) " -NoNewline }
-                "action" { Write-Host -ForegroundColor Yellow "    $([powerunicode]::printByUnicode($this.unicodeLeftArrow)) " -NoNewline }
-            }
+        if ($stats.submessage -eq $true) {
+            Write-Host -ForegroundColor yellow "     " -nonewline;
         }
         else {
-            switch ($this.type) {
-                "success" {
-                    Write-Host -ForegroundColor Green "$([powerunicode]::printByUnicode($this.unicodeSuccess)) " -NoNewline 
-                }
-                "error" { Write-Host -ForegroundColor Red "$([powerunicode]::printByUnicode($this.unicodeError)) " -NoNewline }
-                "info" { Write-Host -ForegroundColor Blue "$([powerunicode]::printByUnicode($this.unicodeInfo)) " -NoNewline }
-                "complete" { Write-Host -ForegroundColor DarkGreen "$([powerunicode]::printByUnicode($this.unicodeComplete)) " -NoNewline }
-                "action" { Write-Host -ForegroundColor Yellow "$([powerunicode]::printByUnicode($this.unicodeAction)) " -NoNewline }
-            }
+            Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($this.icons.download))$([powerunicode]::printByUnicode($this.icons.leftArrow))" -NoNewline;
+            write-host -foregroundcolor green "$($this.buildprogressbar($stats.percent))" -NoNewline;
+            write-host -ForegroundColor gray "[ " -nonewline;
+            write-host -ForegroundColor darkgreen "032mb/s 200MB/87.7GB" -nonewline;
+            write-host -ForegroundColor gray " ]"
         }
-
-        Write-Host -ForegroundColor Gray "$($this.message)"
-        if ($message_exploded -ne $null) {
-            foreach ($msg in $message_exploded) {
-                Write-Host -ForegroundColor Gray "$msg"
-            }
-        }
-
-        # write to log file
-        $elapsed = [get_elapsed]::getElapsedTime()
-        $propture = [get-propture]::getPropture()
-        $log = "{0:dd.MM.yyyy HH:mm:ss} {1} [{2}] {3}{4}{5}{6}{7}{8} {9} - {10}" -f $this.date, $elapsed, $propture["computername"], $propture["username"], $propture["domain"], $propture["os"], $propture["os_version"], $propture["ps_version"], $this.name, $this.message
-        Add-Content -Path "$PSScriptRoot\log.txt" -Value $log
     }
 }
-
