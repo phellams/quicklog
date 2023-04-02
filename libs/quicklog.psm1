@@ -27,9 +27,9 @@ class QuickLog {
     [bool]$logdate
     [bool]$logfile
 
-    QuickLog([string]$name) {
+    QuickLog([string]$name,[string]$unicode) {
         $this.icons = [PSCustomObject]@{
-            Error           = "#1F980"
+            Error           = "#1F341"
             Success         = "#1F340"
             Info            = "#1FAD0"
             Complete        = "#2705"
@@ -39,7 +39,7 @@ class QuickLog {
             Plus            = "#2795"
             ArrowDiagDown   = "#2198"
             DownCurvedArrow = "#21AA"
-            logtime         = "#231A"
+            logtime         = "#23F0"
             download        = "#23EC"
             upload          = "#1F347"
             request         = "#1F310" # 🌐
@@ -48,7 +48,9 @@ class QuickLog {
         $this.name = $name
         $this.date = Get-Date
         $this.logdate = $false
-        $this.unicode = "#1F43D"
+        if ($null -eq $this.unicode) {
+            $this.unicode = "#1F43D"
+        }
     }
 
     [void] enablelogdate() {
@@ -63,11 +65,10 @@ class QuickLog {
         }
     }
 
-    [void]WriteLog([string]$message, [string]$type, [string]$unicode, [bool]$submessage) {
+    [void]WriteLog([string]$message, [string]$type, [bool]$submessage) {
         $this.datestring = Get-Date -Format "hh:mm:ss"
         $this.message = $message
         $this.type = $type
-        $this.unicode = $unicode
         $this.submessage = $submessage
         if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
         if ($message -like "*@{pt:{*") { $message_exploded = $message.split('@').split('}}') } else { $message_exploded = $null }
@@ -77,10 +78,17 @@ class QuickLog {
         write-host -ForegroundColor gray "$($this.name)" -NoNewline;
 
         if ($this.submessage -eq $true) {
-            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]" -NoNewline;
+            if ($this.logdate -eq $true) {
+                write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
+                write-host -ForegroundColor yellow "$($this.datestring)]" -NoNewline;
+            }
         }
         else {
-            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
+            if ($this.logdate -eq $true) {
+                write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
+                write-host -ForegroundColor Yellow "$($this.datestring)]" -NoNewline;
+                write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
+            }
         }
         if ($this.submessage -eq $true) {
             switch ($type) {
