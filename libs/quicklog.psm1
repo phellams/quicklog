@@ -113,10 +113,10 @@ class QuickLog {
                     foreach ($propname in $props.keys) {
                         $value = $props[$propname]
                         if ( $type -eq "error") {
-                            write-host -foregroundColor Magenta "$propname" -nonewline; write-host ":" -nonewline; write-host " " -nonewline; write-host -foregroundColor darkgray "$value" -nonewline; write-host "" -nonewline;
+                            write-host -foregroundColor Magenta "$propname" -nonewline; write-host ":" -nonewline; write-host " " -nonewline; write-host -foregroundColor darkgray "$value " -nonewline; write-host "" -nonewline;
                         }
                         else {
-                            write-host -foregroundColor Magenta "$propname" -nonewline; write-host ":" -nonewline; write-host " " -nonewline; write-host -foregroundColor darkgray "$value" -nonewline; write-host "" -nonewline;
+                            write-host -foregroundColor Magenta "$propname" -nonewline; write-host ":" -nonewline; write-host " " -nonewline; write-host -foregroundColor darkgray "$value " -nonewline; write-host "" -nonewline;
                         }
                     }
                 }

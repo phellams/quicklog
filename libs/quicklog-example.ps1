@@ -5,7 +5,7 @@ $quicklog.enablelogdate()
 
 # ACTION
 $quicklog.WriteLog("Action Message", "action", '' , $false)
-$quicklog.WriteLog("Action Message with propture @{pt:{path=G:/devspace/projects/powershell/_repos/quicklog/libs/quicklog-example.ps1}} @{pt:{parsevalue2=myvale2}}", "action", '' , $false)
+$quicklog.WriteLog("Action Message with propture @{pt:{path=G:/devspace/projects/powershell/_repos/quicklog/libs/quicklog-example.ps1,parsevalue2=myvale2}}", "action", '' , $false)
 $quicklog.WriteLog("Action Message with propture @{pt:{parsevalue1=myvale}} and custom quicklog logo", "action", '#1F41F' , $false)
 $quicklog.WriteLog("Action SubMessage", "action", '#1F41F' , $true)
 $quicklog.WriteLog("Action Message with propture @{pt:{unicode=#1F41F}} and custom quicklog logo and is a submessage", "action", '#1F41F' , $true)
