@@ -87,7 +87,7 @@ class QuickLog {
             if ($this.logdate -eq $true) {
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
                 write-host -ForegroundColor Yellow "$($this.datestring)]" -NoNewline;
-                write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
+                write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.Separator))" -NoNewline;
             }
         }
         if ($this.submessage -eq $true) {
