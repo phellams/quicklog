@@ -1,12 +1,12 @@
-using module G:\devspace\projects\powershell\_repos\psgeneral\libs\elapsed\get-elapsed.psm1
-using module .\submodules\propture\get-propture.ps1 
-using module .\submodules\powerunicode\powerunicode.psm1
+using module .\sm\get-elapsed.psm1
+using module .\sm\propture\get-propture.ps1 
+using module .\sm\powerunicode\powerunicode.psm1
 <#  -------------------------------------------------------------------------------------------------------
 /** ******************************************************************************************************* 
 #!   NAME--------: quicklog
 ##   AUTHER------: mnoxx | codedus
 #!   VERSION-----: 0.1.0
-#?   DESCRIPTION-: Simple function to output to console log messages, wrapper for write-host
+#?   DESCRIPTION-: A Simple powershell script file to output log messages to console, script provides some costomization, wrapper for write-host
 #?                 can be used for any script 
 #?                 
 *?   DEPENDANCIES:
@@ -15,15 +15,23 @@ using module .\submodules\powerunicode\powerunicode.psm1
 *?   LICENCE-----: MIT
 *********************************************************************************************************#>
 function New-QuickLog() {
+    [CmdletBinding()]
     param( 
-        [string]$Name,
+        [Parameter(Mandatory = $true, Position = 0)]
         [string]$Message,
+        [Parameter(Mandatory = $false, Position = 1)]
+        [string]$Name,
+        [Parameter(Mandatory = $true, Position = 2)]
+        [ValidateSet('error', 'success', 'info', 'complete', 'action')]
         [string]$Type,
+        [Parameter(Mandatory = $false, Position = 3)]
         [string]$Unicode,
-        [parameter (ValueFromPipeline=$true)][switch]$SubMessage = $false
+        [Parameter (ValueFromPipeline = $true, Mandatory = $false, Position = 4)]
+        [switch]$SubMessage = $false
     )
     if ($message -like "*@{pt:{*") { $message_exploded = $message.split('@').split('}}') } else { $message_exploded = $null }
     if($null -eq $Unicode -or $unicode.length -eq 0 ){ $Unicode = "#1F438" }
+    #TODO: Change to psobject 
     $unicodeError = "#1FAD6"
     $unicodeSuccess = "#1F350"
     $unicodeInfo = "#2615"
@@ -35,6 +43,7 @@ function New-QuickLog() {
     $unicodeArrorDiagDown = "#2198"
     $unicodeDownCurvedArrow = "#21AA"
     $date = get-date 
+    #TODO: change write-host to single line and use inline color statements
     write-host -ForegroundColor yellow "[" -nonewline;
     write-host "$([powerunicode]::printByUnicode($unicode))" -nonewline;
     write-host -ForegroundColor Magenta "-$name" -NoNewline;
