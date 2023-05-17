@@ -20,9 +20,11 @@ test-pscore-job:
   script:
     - pwsh.exe
     - write-host -f green "template ci/cd config successful"
-  
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "build" && $CI_BUILD_STATUS == "success"'
+
 test-ps-job:
-  stage: test_pscore
+  stage: test_ps
   script:
     - pwsh.exe
     - write-host -f green "template ci/cd config successful"
