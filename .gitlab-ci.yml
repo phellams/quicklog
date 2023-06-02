@@ -4,10 +4,14 @@
 # env: powershell(5.x), pwsh(7.x)
 stages:
   - build # dependencies
+  - test_pssa # analyze script
+  - test_pester # run mock test
   - test_pscore # test PowerShell Core
   - test_ps # test none-powershell Core
   - deploy_nugetgitlab # deploy to NuGet and GitLab
   - manual_deploy_psgallary # manual deploy to PSGallery
+  - manual_deplay_choc # chocalte gallary
+  # - sync_gitlab_to_psgal_to_choc
 
 build-job:
   stage: build
