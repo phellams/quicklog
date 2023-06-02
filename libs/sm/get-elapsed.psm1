@@ -3,11 +3,8 @@
 #!   NAME--------: Get-Elapsed
 ##   AUTHER------: mnoxx | codedus
 #!   VERSION-----: 0.1.0
-#?   DESCRIPTION-: Simple function return elapsed time from datetime
-#?                  
-#?                 
-*?   SUNMODULES--: 
-*            
+#?   DESCRIPTION-: Simple function return elapsed time from datetime             
+*?   SUNMODULES--:          
 ##   BUILD ENV---: BUILD: Powershellcore 7.3.3
 *?   LICENCE-----: MIT
 *********************************************************************************************************#>
