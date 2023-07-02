@@ -1,6 +1,6 @@
 using module sm\Get-Elapsed.psm1
 using module sm\Get-PropTune.psm1
-using module sm\ColorTune.psm1
+using module sm\Get-ColorTune.psm1
 using module sm\powerunicode.psm1
 #*  ____       _      __   __
 #*  / __ \__ __(_)____/ /__/ / ___ ___ _

@@ -3,21 +3,22 @@
 # version: v1.1
 # env: powershell(5.x), pwsh(7.x)
 stages:
-  - build # dependencies
-  - test_pssa # analyze script
-  - test_pester # run mock test
-  - test_pscore # test PowerShell Core
-  - test_ps # test none-powershell Core
-  - deploy_nugetgitlab # deploy to NuGet and GitLab
-  - manual_deploy_psgallary # manual deploy to PSGallery
-  - manual_deplay_choc # chocalte gallary
-  # - sync_gitlab_to_psgal_to_choc
-
+  - Test-PSM # dependencies
+  - Build-Module
+  - Build-Nuget-Package
+  - Deploy-Nuget-Package-gitlab-SH
+  - Sync-Nuget-gitlab-Package-To-PSGallary
+  - Sync-NextCloud-PSM-Module
+  - Sync-GoogleDrive-PSM-Module
 build-job:
   stage: build
   script:
     - pwsh.exe
     - write-host -f green "template ci/cd config successful"
+  artifacts:
+    paths:
+    - compiled/folder/from/root
+    expire_in: 20 minutes
 
 test-pscore-job:
   stage: test_pscore
@@ -51,3 +52,9 @@ manual-deploy-psgallary-job:
     - write-host -f green "template ci/cd config successful"
   rules:
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "deploy_nugetgitlab" && $CI_BUILD_STATUS == "success"'
+# Release a Package
+package:
+  script: Compress-Archive -Path .\Build -DestinationPath Build.gz
+  artifacts:
+    paths:
+    - Build.gz

@@ -7,4 +7,4 @@ Build-Module -SourcePath .\ `
              -ExcludedFiles "New-NerdIcon.ps1" `
              -FoldersToCopy "libs" `
              -Manifest `
-             -Version 0.1.0
+             -Version 0.1.0 

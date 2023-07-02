@@ -1,6 +1,7 @@
+# powershell function template 
+#
 Function Get-ColorTune(){
     [CmdletBinding()]
-    [OutputType([string])]
     param(
         [parameter(mandatory=$true)]
         [string]$text,
@@ -46,4 +47,3 @@ Function Get-ColorTune(){
         }
     }
 }
-Export-ModuleMember -Function Get-ColorTune

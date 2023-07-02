@@ -1,6 +1,6 @@
 using module ..\logtastic_lib.psm1
 <#  -------------------------------------------------------------------------------------------------------
-/** ******************************************************************************************************* 
+/** *******************************************************************************************************
 #!   NAME--------: Write-QLMessage Cmdlet
 ##   AUTHER------: snoonx | nytscripts
 #?   DESCRIPTION-: Cmdlet function Write-QLMessage interface for quicklog class.          
@@ -10,7 +10,7 @@ using module ..\logtastic_lib.psm1
 ** ******************************************************************************************************#>
 Function Write-LTMessage ( ){
     [CmdletBinding()]
-    param( 
+    param(
         [Parameter(Mandatory = $true, Position = 0)]
         [string]$Message,
         [Parameter(Mandatory = $false, Position = 1)]
@@ -29,7 +29,7 @@ Function Write-LTMessage ( ){
         $ql.enablelogdate()
         if($null -ne $unicode -and $unicode.length -gt 0 ) { $ql.unicode = $unicode }
         else{ $ql.unicode = $null }
-        $ql.WriteLog($message, $type, $submessage)   
+        $ql.WriteLog($message, $type, $submessage)
     }
 }
 Export-ModuleMember -Function Write-LTMessage

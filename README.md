@@ -8,7 +8,7 @@
 [![Contributors](https://img.shields.io/gitlab/contributors/powershell/quicklog?gitlab_url=https%3a%2f%2fgitlab.snowlab.tk)](https://gitlab.snowlab.tk/powershell/quicklog/activity)
 
 # Quicklog
-The `New-Quicklog` function is a PowerShell script that outputs a formatted log message to the console. The function has four parameters:
+LogTastic function is a PowerShell script that outputs a formatted log message to the console. The function has four parameters:
 
 - `-name`: the name of the log message
 - `-message`: the log message text
