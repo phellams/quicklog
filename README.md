@@ -1,41 +1,83 @@
-[![pongologo](./quicklog-logo.svg)](https://gitlab.snowlab.tk/powershell/quicklog/-/blob/main/quicklog-logo.svg)
---
-[![Maintainer](https://img.shields.io/badge/Maintainer-mnoxx-blue??&stype=flat&logo=Personio&logoColor=blue)](https://gitlab.snowlab.tk/mnoxx)
-[![License](https://img.shields.io/gitlab/license/43?gitlab_url=https%3a%2f%2fgitlab.snowlab.tk&logo=unlicense)](https://gitlab.snowlab.tk/powershell/quicklog/-/blob/main/LICENSE)
-[![Latest Release](https://gitlab.snowlab.tk/powershell/quicklog/-/badges/release.svg)](https://gitlab.snowlab.tk/powershell/quicklog/-/releases) 
-[![Pipeline Status](https://gitlab.snowlab.tk/powershell/quicklog/badges/main/pipeline.svg)](https://gitlab.snowlab.tk/powershell/quicklog/-/commits/main) 
-[![Coverage Report](https://gitlab.snowlab.tk/powershell/quicklog/badgesmain/coverage.svg)](https://gitlab.snowlab.tk/powershell/quicklog/-/commits/main)
-[![Contributors](https://img.shields.io/gitlab/contributors/powershell/quicklog?gitlab_url=https%3a%2f%2fgitlab.snowlab.tk)](https://gitlab.snowlab.tk/powershell/quicklog/activity)
+LogTastic is a PowerShell Module that outputs styled log message to the console. It is designed to be used in conjunction with other PowerShell modules to provide a consistent look and feel to the console output.
 
-# Quicklog
-LogTastic function is a PowerShell script that outputs a formatted log message to the console. The function has four parameters:
+# 🧩 Features
+- Enable/Disable log name in log message template
+- Enable/Disable time/date in logmessage
+- Enable/Disable custom utf-8 Unicode Icon Log name 
+- Inject utf-8 Unicode Emoji into log message`{ge:unicode}`
+- Inject colored text into log message via `{ct:colorName:text}`
+- Inject Property Name And Value into log message via `{pt:{Name=Value}}`
+- Switch outputs between parent and sub message types
+- Basic Progress Bar
+- Custom Progressbar bars with `BarMaster`
+- Colors Loaders with `SpinMaster`
+  
+# 🥽Install LogTastic
 
-- `-name`: the name of the log message
-- `-message`: the log message text
-- `-type: the type of log message, which can be one of the following values: **"success"**, "**error"**, **"info"**, **"complete"**, or **"action"**
-- `-unicode`: the unicode value of the symbol to be used in the log message
+To install **LogTastic**, follow these steps:
 
-The function first splits the $message parameter into an array of sub-messages, if $message contains the string `@{pt:{`. If not, the `$message_exploded` variable is set to `$null`.
+1. Clone the repository from GitHub.
+2. Open a PowerShell session and navigate to the cloned repository directory.
+3. Run the installation via the command below:
+```powershell
+# Import the module
+git clone https://gitlab.snowlab.tk/shelltastic/LogTastic.git
+cd LogTastic
+Import-Module -Name CommitFusion
+...
+```
 
-The script then sets the following variables to store the unicode values for different types of log messages:
+### 📦 From Package Repository
+*Microsoft.PSGallary*
+```Powershell
+# Install The Module from the PsGal
+Install-Module -Name LogTastic -MinimumVersion 0.1.2
 
-- `$unicodeError: "#1F6A9"`
-- `$unicodeSuccess: "#2705"`
-- `$unicodeInfo: "#1FAA7"`
-- `$unicodeComplete: "#1F375"`
-- `$unicodeAction: "#1F528"`
+# Import Module into you powershell session
+Import-Module -Name LogTastic
 
-The `$date` variable is set to the current date and time using the `get-date` cmdlet.
+# Note! You May Need to change your `ExecutionPolicy`
+# Set-ExecutionPolicy
+```
 
-The script then outputs the log message to the console using a combination of the `write-host` cmdlet and `[powerunicode]::printByUnicode` method. The log message consists of the following elements:
+*Chololac*
 
-- The square bracket `[` symbol with a yellow foreground color
-- The symbol specified by the `$unicode` parameter using `[powerunicode]::printByUnicode($unicode)`
-- The `$name` parameter with a magenta foreground color
-- The square bracket `]` symbol with a yellow foreground color
-- The log message type symbol specified by the `$type` parameter using `[powerunicode]::printByUnicode` and the corresponding `$unicodeXXX` variable. The symbol is displayed with a different foreground color depending on the type of log message.
-- The log message area displays the `$message` parameter, or each sub-message in the `$message_exploded` array if it exists. If a sub-message starts with `{pt:{`, it is processed as a set of properties, and each property name-value pair is displayed on a separate line. If a sub-message doesn't start with `{pt:{`, it is displayed as is. If the `$type` parameter is "error", the log message or sub-message is displayed with a red background color.
+```Powershell
+# Install The Module from the PsGal
+Install-Module -Name LogTastic -MinimumVersion 0.1.2
 
-Finally, the script outputs the log message type and the elapsed time since the log message was created using `get-elapsed` method. The elapsed time is displayed in a different foreground color depending on the type of log message.
+# Import Module into you powershell session
+Import-Module -Name LogTastic
+```
+> Installing Chocolate Repository
+[How to Install Choloc](https) `choco.com/packages`
 
-The `new-quicklogsub` function is not used in the script and is defined but empty. An example call to the `new-quicklog` function is provided at the end of the script, which logs a "success" message with the name "Pongo" and the message text "Generating Pongo SVG Image".
+#  Using LogTastic
+
+Example #1 - Minimum Parameters
+```Powershell
+Write-LTMessage -Name 'ql' -Message "My Message String" -Type info -Unicode "#jahfu"
+```
+♦ OutPut
+```Powershell
+#Output Here
+```
+
+
+Parameter List `Write-LTMessage `
+```powershell
+-Name [string] 
+-Message [string] 
+-Type [string][Action|info|success|complete|error]
+-uncicode [string]"#code"
+-SubMessage [switch]$true
+-NoDatTime [switch]$true
+-NoLogIcon [switch]$true
+```
+
+## 📑 License
+LogTastic is released under the MIT License. See LICENSE for more details.
+
+## 👤 Author
+LogTastic is authored and maintained by @sgkens.
+
