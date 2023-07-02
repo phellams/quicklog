@@ -23,18 +23,7 @@ Copyright = '2023 @ shelltastic. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = @"
-LogTastic is a Module for PowerShell that outputs formatted log message to the console. This module allows the output of log messages to the console
-
-- Enable/Disable log name in log message
-- Enable/Disable time/date in log message
-- Enable/Disable custom utf-8 Unicode Icon for log name
-- Add utf-8 Unicode Emoji into log message{ge:unicode}
-- Add colored text into log message via {ct:colorName:text}
-- Add Property Name And Value into log message via {pt:{Name=Value}}
-- Switch outputs between parent message and sub message types
-- Display Basic Progress bar
-- Themed Progress bar bars with `BarMaster`
-- Themed Loaders with `SpinMaster`.
+LogTastic is a PowerShell Module that outputs styled log message to the console. It is designed to be used in conjunction with other PowerShell modules to provide a consistent look and feel to the console output.
 "@
 
 # Minimum version of the PowerShell engine required by this module
