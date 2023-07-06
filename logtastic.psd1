@@ -13,7 +13,7 @@ ModuleVersion = '0.1.0'
 GUID = '9d70e476-0214-4644-aaf6-cb4fadc1116c'
 
 # Author of this module
-Author = 'G K. Snow'
+Author = 'Garvey K. Snow'
 
 # Company or vendor of this module
 CompanyName = 'shelltastic'
@@ -27,7 +27,7 @@ LogTastic is a PowerShell Module that outputs styled log message to the console.
 "@
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '7.3.2'
+PowerShellVersion = '5.1'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
