@@ -3,36 +3,65 @@
 # version: v1.1
 # env: powershell(5.x), pwsh(7.x)
 stages:
-  - Test-PSM # dependencies
-  - Build-Module
-  - Build-Nuget-Package
-  - Deploy-Nuget-Package-gitlab-SH
-  - Sync-Nuget-gitlab-Package-To-PSGallary
-  - Sync-NextCloud-PSM-Module
-  - Sync-GoogleDrive-PSM-Module
+  - Build-Module # Copy Module files for build
+  - Test-PSM # Test .psd1 profile
+  - Test-PSA # Run Module files through PSScriptAnalyzer
+  - Build-Nuget-Package # Create nupkg Package from build
+  - Deploy-Gitlab-Package # Deploy Package to gitlab nuget
+  - Deploy-Proget-Packages # Deploy Package to Proget[nuget,psgallary,chocolatey] feeds 
+  - Deploy-PSGallary-Package # Deploy Package to PSGallary
+  - Deploy-Chocolatey # Deploy Package to Chocolatey
+  - Create-Release # Create Release
 build-job:
   stage: build
   script:
-    - pwsh.exe
+    - pwsh
     - write-host -f green "template ci/cd config successful"
   artifacts:
     paths:
-    - compiled/folder/from/root
-    expire_in: 20 minutes
+    - ./disk/logtastic
+#    expire_in: 20 minutes
 
-test-pscore-job:
-  stage: test_pscore
+Test-PSM-job:
+  stage: Test-PSM
   script:
-    - pwsh.exe
-    - write-host -f green "template ci/cd config successful"
+    - pwsh
+    - Test-ModuleManifest -Path ./disk/logtastic/logtastic.psd1
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "build" && $CI_BUILD_STATUS == "success"'
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "Build-Module" && $CI_BUILD_STATUS == "success"'
+  artifacts:
+    paths:
+    - ./dist/logtastic
+#    expire_in: 20 minutes
 
-test-ps-job:
-  stage: test_ps
+Test-PSA-job:
+  stage: Test-PSA
   script:
     - pwsh.exe
-    - write-host -f green "template ci/cd config successful"
+    - install-module -name PSScriptAnalyzer
+    - import-module -name PSScriptAnalyzer
+    - Invoke-ScriptAnalyzer -Path ./disk/logtastic/*.ps1
+    - Invoke-ScriptAnalyzer -Path ./disk/logtastic/*.psm1
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "Test-PSM" && $CI_BUILD_STATUS == "success"'
+  artifacts:
+    paths:
+    - ./disk/logtastic
+#    expire_in: 20 minutes
+
+Build-Nuget-Package-job:
+  stage: Build-Nuget-Package
+  script:
+    - pwsh.exe
+    - .\ci-build-nupkg.ps1
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "Test-PSA" && $CI_BUILD_STATUS == "success"'
+
+Deploy-Gitlab-Package-job:
+  stage: Deploy-Gitlab-Package
+  script:
+    - pwsh.exe
+    - .\CI-Build-PushToGitlab.ps1
   rules:
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "test_pscore" && $CI_BUILD_STATUS == "success"'
     

@@ -1,6 +1,20 @@
 using module ..\NuPSForge\libs\New-NuspecPacakgeFile.psm1
 using module ..\NuPSForge\libs\New-NupkgPacakge.psm1
 
+# Powershell Gallery Description Does not support markdown indenting
+# ? But Nuget and CHoc Does
+$Additional_descriptions = @"
+♦- Enable/Disable log name in log message
+♦- Enable/Disable time/date in log message
+♦- Enable/Disable custom utf-8 Unicode Icon for log name
+♦- Add utf-8 Unicode Emoji into log message{ge:unicode}
+♦- Add colored text into log message via {ct:colorName:text}
+♦- Add Property Name And Value into log message via {pt:{Name=Value}}
+♦- Switch outputs between parent message and sub message types
+♦- Display Basic Progress bar
+♦- Themed Progress bar bars with BarMaster
+♦- Themed Loaders with SpinMaster
+"@
 
 # --Config--
 $ModuleManifest = Test-ModuleManifest -path .\dist\logtastic\logtastic.psd1

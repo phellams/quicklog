@@ -62,28 +62,16 @@ $ModuleInfo           = Test-ModuleManifest -path ".\dist\$ModuleName\$ModuleNam
 # }
 
 
-# # Push to ProGet Chocolatey
-# if($choco = Get-command choco.exe){
-#   write-host "Checking if Chocolatey is installed, skipping install"
-#   write-host "Pushing to chocolatey: .\dist\$nupkgFileName"
-#   choco push ".\dist\$nupkgFileName" --source $ProGet_chocInstance --apikey $apikey
-#   write-host "Pushed to chocolatey $nupkgFileName - Complete"
-# }else{
-#   write-host "Chocolatey is not installed, installing Chocolatey"
-#   break;
-# }
-# [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-# [Net.ServicePointManager]::SecurityProtocol
-# $parameters = @{
-#   Name = "PowerShellCore"
-#   SourceLocation = "https://repo.codedus.tk/nuget/PowerShellCore"
-#   InstallationPolicy = 'Trusted'
-# }
-# # Register-PSRepository @parameters
-# Register-PSRepositoryFix -Name "pscore" -SourceLocation "https://repo.codedus.tk/nuget/PsCore/" -InstallationPolicy Trusted
-
-
-
+# Push to ProGet Chocolatey
+if($choco = Get-command choco){
+  write-host "Checking if Chocolatey is installed, skipping install"
+  write-host "Pushing to chocolatey: .\dist\$nupkgFileName"
+  choco push ".\dist\$nupkgFileName" --source $ProGet_chocInstance --apikey $apikey
+  write-host "Pushed to chocolatey $nupkgFileName - Complete"
+}else{
+  write-host "Chocolatey is not installed, installing Chocolatey"
+  break;
+}
 
 # Push to ProGet Nuget
 if(Get-command nuget.exe){
