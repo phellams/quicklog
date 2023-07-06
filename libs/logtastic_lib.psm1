@@ -37,6 +37,7 @@ class logtastic {
     [string]$message
     [pscustomobject]$icons
     [bool]$logdate
+    [bool]$logicon
     [bool]$logfile
     [string]$PTSeperator
 
@@ -97,6 +98,30 @@ class logtastic {
         $this.logdate = $true
     }
 
+    [void] disablelogdate() {
+        $this.logdate = $false
+    }
+
+    [void] enableLogIcon() {
+        $this.logicon = $true
+    }
+
+    [void] disableLogIcon() {
+        $this.logicon = $false
+    }
+    [void] enableLogfile() {
+        $this.logfile = $true
+    }
+    [void] disableLogfile() {
+        $this.logfile = $false
+    }
+
+    [string] NewIndent([int]$indent) {
+        [string] $indentstring = " "
+        $indentstring = $indentstring * $indent
+        return $indentstring
+    }
+
     [void] enablelogfile([string]$path) {
         if(test-path -path $path){
             Start-Transcript -path "$path\documents\$($this.name).log" -Append
@@ -114,12 +139,17 @@ class logtastic {
         # Set default unicode if not set
         if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
         
-        #? custom name of the log or apps name its used with
-        #? Default: ql
-        #write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
-        write-host -ForegroundColor yellow "[$([powerunicode]::printByUnicode($this.unicode))-" -nonewline;
-        write-host -ForegroundColor gray "$($this.name)" -NoNewline;
-
+        write-host -foregroundcolor yellow "[" -nonewline;
+        if($this.logicon -eq $true){
+            #? custom name of the log or apps name its used with
+            #? Default: ql
+            #write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
+            write-host -ForegroundColor yellow "[$([powerunicode]::printByUnicode($this.unicode))-" -nonewline;
+            write-host -ForegroundColor gray "$($this.name)" -NoNewline;
+        }
+        else{
+            write-host -ForegroundColor yellow "$($this.name)-" -nonewline;
+        }
         #? If message is a submessage
         if ($this.submessage -eq $true) {
             if ($this.logdate -eq $true) {
@@ -137,19 +167,19 @@ class logtastic {
         if ($this.submessage -eq $true) {
             switch ($type) {
                 success { 
-                    Write-Host -ForegroundColor green "     $([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
+                    Write-Host -ForegroundColor green "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
                 }
                 error { 
-                    Write-Host -ForegroundColor red "     $([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
+                    Write-Host -ForegroundColor red "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
                 }
                 info { 
-                    Write-Host -ForegroundColor blue "     $([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
+                    Write-Host -ForegroundColor blue "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
                 }
                 complete { 
-                    Write-Host -ForegroundColor darkgreen "     $([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
+                    Write-Host -ForegroundColor darkgreen "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
                 }
                 action { 
-                    Write-Host -ForegroundColor yellow "     $([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline;
+                    Write-Host -ForegroundColor yellow "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline;
                  }
                 # find {}
                 # request{}
