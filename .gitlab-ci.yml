@@ -4,22 +4,27 @@
 # env: powershell(5.x), pwsh(7.x)
 stages:
   - Build-Module # Copy Module files for build
+  - Test-Module # Testing Module againsts predefined scripts
   - Test-PSM # Test .psd1 profile
   - Test-PSA # Run Module files through PSScriptAnalyzer
-  - Build-Nuget-Package # Create nupkg Package from build
+  - Create-Nuget-Package # Create nupkg Package from build
   - Deploy-Gitlab-Package # Deploy Package to gitlab nuget
   - Deploy-Proget-Packages # Deploy Package to Proget[nuget,psgallary,chocolatey] feeds 
   - Deploy-PSGallary-Package # Deploy Package to PSGallary
   - Deploy-Chocolatey # Deploy Package to Chocolatey
+  - Deploy-Coverage-Coverails # Deploy Coverage to Coverails.io
   - Create-Release # Create Release
 build-job:
   stage: build
+  tags:
+    - windows
+    - pwsh-core
   script:
     - pwsh
-    - write-host -f green "template ci/cd config successful"
+    - ./CI-Build-Module.ps1
   artifacts:
     paths:
-    - ./disk/logtastic
+    - ./dist/logtastic
 #    expire_in: 20 minutes
 
 Test-PSM-job:
@@ -37,11 +42,11 @@ Test-PSM-job:
 Test-PSA-job:
   stage: Test-PSA
   script:
-    - pwsh.exe
+    - pwsh
     - install-module -name PSScriptAnalyzer
     - import-module -name PSScriptAnalyzer
-    - Invoke-ScriptAnalyzer -Path ./disk/logtastic/*.ps1
-    - Invoke-ScriptAnalyzer -Path ./disk/logtastic/*.psm1
+    - Invoke-ScriptAnalyzer -Path ./dist/logtastic/*.ps1
+    - Invoke-ScriptAnalyzer -Path ./dist/logtastic/*.psm1
   rules:
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "Test-PSM" && $CI_BUILD_STATUS == "success"'
   artifacts:
@@ -49,8 +54,8 @@ Test-PSA-job:
     - ./disk/logtastic
 #    expire_in: 20 minutes
 
-Build-Nuget-Package-job:
-  stage: Build-Nuget-Package
+Create-Nuget-Package-job:
+  stage: Create-Nuget-Package
   script:
     - pwsh.exe
     - .\ci-build-nupkg.ps1
