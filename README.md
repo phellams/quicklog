@@ -25,7 +25,8 @@
   </a>
 </div>
 <div style="font-weight:bold;" align="center" >
-  <img src="">POWERSHELL MODULE
+  <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/dist/Generic-powershell-24x23.png"> </br>
+  POWERSHELL MODULE
 </div>
 
 <!--Separator-->
@@ -46,7 +47,12 @@ LogTastic is a PowerShell Module that outputs styled log messages to the console
  🪶  *Ouput* Basic Progress Bars `[########>------------------>(25mb/sec | 6.88% Complete)]` \
  🪶  *Ouput* Custom Progress Bars  with [`Tadpol`]() \
  🪶  *Output* Colors Loaders with [`Tradel`]()
-  
+
+> NOTE! - Colors are not shown correctly or will vary depending on your shell color pallet, ad. gif maker doesnt know powershell syntax
+<div align="center">
+  <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/terminal-gifs/shelltastic-terminal-gif.gif">
+</div>
+
 # 🥽 Install Module
 ## 💼Clone Repository
 
@@ -86,7 +92,7 @@ Import-Module -Name logtastic
 > Installing Chocolate Package Repositoy
 [How to Install Choloc](https) `choco.com/packages`
 
-# 🔧Use Module
+# 🔧 Using the Module
 
 ### Example #1 - Minimum Parameters
 ```Powershell
@@ -104,12 +110,6 @@ PS > '[🐽-ltm⏰01:43:34]🌟❱ LTM Message with a type:Action  a-ex: 0m 0s 7
 # SubMessage
 Write-LTMessage -Name 'LT' -Message "My Message String" -Type info -Unicode "#jahfu"
 ```
-
-# Example
-<div style="display:center">
-<img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/terminal-gifs/shelltastic-terminal-gif.gif">
-</div>
-
 
 ### Parameter List `Write-LTMessage`
 ```powershell
