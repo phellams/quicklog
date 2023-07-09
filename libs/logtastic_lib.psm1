@@ -39,32 +39,36 @@ class logtastic {
     [bool]$logdate
     [bool]$logicon
     [bool]$logfile
+    [bool]$ExecTime
     [string]$PTSeperator
     [int]$sm_indent
     [datetime]$StartTime
     [datetime]$lastMessageTime
     [String]$CurrentLogTime
     [string]$LastLogTime
+    
 
     logtastic([string]$unicode) {
         $this.icons = [PSCustomObject]@{
-            Error           = "#1F4A2" # 💢
+            Error           = "#2753" # ❓
             Error2          = "#2757" # ❗
-            Success         = "#1F95D" # 🥝
-            Info            = "#1F300" # 🌀
+            Success         = "#1F530" # 🔰
+           # Info            = "#1F300" # 🌀
+            Info            = "#1F4D2" # 📒
             Complete        = "#2705"  # ✅
-            Action          = "#1F31F" # 🌱
+            Action          = "#1F364" # 🍤
             request         = "#1F310" # 🌐
             response        = "#1F311" # 🌑
-            Petagram        = "#1F50A" # 🔯
+            Speaker         = "#1F50A" # 🔊
             Seperator       = "#1F4A0" # 💠
-            Separator2      = "#2666" # ♦
-            Separator3      = "#2638" # ❄ 
+            Separator2      = "#2666"  # ♦
+            Separator3      = "#2638"  # ☸ 
             LeftArrow       = "#2771"  #  ❱
             Plus            = "#2795"  # ➕
             logtime         = "#23F0"  # ⏰
-            download        = "#23EC"  # ⏬
-            upload          = "#1F347" # 🍇
+            download        = "#1F4E5"  # ⏬
+            download2       = "#1F300" # 🌀
+            upload          = "#1F4E4" # 📤
             ArrowDiagDown   = "#21AA"  # ↪
             ArrowDiagUp     = "#2197"  # ↗
             UpCurvedArrow   = "#2197"  # ↗
@@ -90,7 +94,7 @@ class logtastic {
         $this.StartTime = $this.GetLogTime()
         $this.LastLogTime = $this.GetLogTime()
         if ($null -eq $this.unicode) {
-            $this.unicode = "#1F43D"
+            $this.unicode = "#1F365"
         }
         else{
             $this.unicode = $unicode
@@ -100,26 +104,33 @@ class logtastic {
         }
     }
 
-    [void] enablelogdate() {
+    [void] EnableLogdate() {
         $this.logdate = $true
     }
 
-    [void] disablelogdate() {
+    [void] DisableLogdate() {
         $this.logdate = $false
     }
 
-    [void] enableLogIcon() {
+    [void] EnableLogIcon() {
         $this.logicon = $true
     }
 
-    [void] disableLogIcon() {
+    [void] DisableLogIcon() {
         $this.logicon = $false
     }
-    [void] enableLogfile() {
+    [void] EnableLogfile() {
         $this.logfile = $true
     }
-    [void] disableLogfile() {
+    [void] DisableLogfile() {
         $this.logfile = $false
+    }
+
+    [void] EnableExectime() {
+        $this.Exectime = $true
+    }
+    [void] DisablExectime() {
+        $this.Exectime = $false
     }
 
     [string] NewIndent([int]$indent) {
@@ -131,7 +142,7 @@ class logtastic {
         return (Get-Date).toString()
     }
 
-    [void] enablelogfile([string]$path) {
+    [void] EnableLogfile([string]$path) {
         if(test-path -path $path){
             Start-Transcript -path "$path\documents\$($this.name).log" -Append
         }else{
@@ -154,7 +165,8 @@ class logtastic {
         if($this.logicon -eq $true){
             #? custom name of the log or apps name its used with
             #write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
-            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.unicode))-" -nonewline;
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
+            write-host -ForegroundColor gray "-" -nonewline;
             write-host -ForegroundColor gray "$($this.name)" -NoNewline;
         }
         else{
@@ -256,12 +268,60 @@ class logtastic {
         }
         if(!$this.submessage){
             switch ($this.type) {
-                success { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) s-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)" }
-                error { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) e-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime  -Formattedstring)" }
-                info { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) i-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime  -Formattedstring)" }
-                complete { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) c-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime  -Formattedstring)" }
-                action { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) a-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime  -Formattedstring)" }
-                default { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) i-ex:$(Get-Elapsed -From $this.LastLogTimea -To $this.CurrentLogTime  -Formattedstring)" }
+                success { 
+                    Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" -nonewline;
+                    if($this.Exectime){
+                        write-host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.TLeftArrow))" -nonewline;
+                        write-host -ForegroundColor DarkCyan "s-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                    }else{
+                        write-host ""
+                    }
+                }
+                error { 
+                    Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" -nonewline;
+                    if($this.Exectime){
+                        write-host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.TLeftArrow))" -nonewline;
+                        write-host -ForegroundColor DarkCyan "e-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                    }else{
+                        write-host ""
+                    }
+                }
+                info { 
+                    Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" -nonewline;
+                    if($this.Exectime){
+                        write-host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.TLeftArrow))" -nonewline;
+                        write-host -ForegroundColor DarkCyan "i-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                    }else{
+                        write-host ""
+                    }
+                }
+                complete { 
+                    Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" -nonewline;
+                    if($this.Exectime){
+                        write-host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.TLeftArrow))" -nonewline;
+                        write-host -ForegroundColor DarkCyan "c-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                    }else{
+                        write-host ""
+                    }
+                }
+                action { 
+                    Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" -nonewline;
+                    if($this.Exectime){
+                        write-host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.TLeftArrow))" -nonewline;
+                        write-host -ForegroundColor DarkCyan "a-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                    }else{
+                        write-host ""
+                    }
+                }
+                Default { 
+                    Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" -nonewline;
+                    if($this.Exectime){
+                        write-host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.TLeftArrow))" -nonewline;
+                        write-host -ForegroundColor DarkCyan "ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                    }else{
+                        write-host ""
+                    }
+                }
             }         
         }
         else{
@@ -273,18 +333,18 @@ class logtastic {
                 action { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" }
                 default { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" }                
             }
+            $this.LastLogTime = $this.GetLogTime()
         }
         # Set the last log message time allows to calculate the time difference between the logs
-        $this.LastLogTime = $this.GetLogTime()
     }
 
-    [string]buildprogressbar([int]$percent, [int]$barcount = 50){
+    [string]BuildProgressBar([int]$percent, [int]$barcount = 50){
         # 25 is the number of characters in the progress bar
         $bar = ""
         $bar = $bar + "["
-        $bar = $bar + ("-" * [math]::floor(($barcount * $percent) / 100))
+        $bar = $bar + ("●" * [math]::floor(($barcount * $percent) / 100))
         $bar = $bar + ">"
-        $bar = $bar + (" " * [math]::floor($barcount - (($barcount * $percent) / 100)))
+        $bar = $bar + ("○" * [math]::floor($barcount - (($barcount * $percent) / 100)))
         $bar = $bar + "]"
         return $bar
     }
@@ -295,23 +355,33 @@ class logtastic {
         write-host "[$([powerunicode]::printByUnicode($this.unicode))-" -nonewline;
         write-host -ForegroundColor gray "$($this.name)" -NoNewline;
 
-
         if ($stats.submessage -eq $true) {
-            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]" -NoNewline;
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
+            Write-Host -ForegroundColor yellow "     " -nonewline;
+            write-host -ForegroundColor Blue "$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -NoNewline;
+            write-host -foregroundcolor green "$($this.buildprogressbar($stats.percent,$stats.barcount))" -NoNewline;
+            write-host -ForegroundColor blue "[" -nonewline;
+            write-host -ForegroundColor Magenta "$([powerunicode]::printByUnicode($this.icons.Download)) " -nonewline;
+            Write-Host -ForeGroundcolor darkgreen "$($stats.bandwidth)" -NoNewline;
+            write-host -ForegroundColor darkgreen "$($stats.transfered)" -NoNewline;
+            write-host -ForegroundColor Magenta "$([powerunicode]::printByUnicode($this.icons.DataStreamLeftRight))" -nonewline;
+            write-host -ForegroundColor darkgreen "$($stats.Total)" -nonewline;
+            write-host -ForegroundColor blue "]-$($stats.status) $($stats.eta)"
         }
         else {
             write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))$(if($this.logdate -eq $true){$this.datestring})]$([powerunicode]::printByUnicode($this.icons.Sperator))" -NoNewline;
-        }
-
-        if ($stats.submessage -eq $true) {
-            Write-Host -ForegroundColor yellow "     " -nonewline;
-        }
-        else {
-            Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($this.icons.download))$([powerunicode]::printByUnicode($this.icons.leftArrow))" -NoNewline;
+            Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($this.icons.download2))$([powerunicode]::printByUnicode($this.icons.leftArrow))" -NoNewline;
             write-host -foregroundcolor green "$($this.buildprogressbar($stats.percent,$stats.barcount))" -NoNewline;
-            write-host -ForegroundColor gray "[ " -nonewline;
-            write-host -ForegroundColor darkgreen "$($stats.bandwidth) $($this.transfered)/$($this.Total)" -nonewline;
-            write-host -ForegroundColor gray " ]"
+            write-host -ForegroundColor blue "[" -nonewline;
+            write-host -ForegroundColor Magenta "$([powerunicode]::printByUnicode($this.icons.Download)) " -nonewline;
+            Write-Host -ForeGroundcolor darkgreen "$($stats.bandwidth)" -NoNewline;
+            write-host -ForegroundColor darkgreen "$($stats.transfered)" -NoNewline;
+            write-host -ForegroundColor Magenta "$([powerunicode]::printByUnicode($this.icons.DataStreamLeftRight))" -nonewline;
+            write-host -ForegroundColor darkgreen "$($stats.Total)" -nonewline;
+            write-host -ForegroundColor blue "]-$($stats.status) $($stats.eta)"
         }
     }
 }
+
+
+
