@@ -1,7 +1,7 @@
 using module sm\Get-Elapsed.psm1
 using module sm\Get-PropTune.psm1
 using module sm\Get-ColorTune.psm1
-using module sm\powerunicode.psm1
+using module sm\powerunicode\powerunicode.psm1
 #*  ____       _      __   __
 #*  / __ \__ __(_)____/ /__/ / ___ ___ _
 #  / /_/ / // / // __/  '_/ /_/ _ Y _ `/
@@ -144,7 +144,7 @@ class logtastic {
             #? custom name of the log or apps name its used with
             #? Default: ql
             #write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
-            write-host -ForegroundColor yellow "[$([powerunicode]::printByUnicode($this.unicode))-" -nonewline;
+            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.unicode))-" -nonewline;
             write-host -ForegroundColor gray "$($this.name)" -NoNewline;
         }
         else{
@@ -154,55 +154,36 @@ class logtastic {
         if ($this.submessage -eq $true) {
             if ($this.logdate -eq $true) {
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
-                write-host -ForegroundColor gray "$($this.datestring)]" -NoNewline;
+                write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
+                write-host -foregroundcolor yellow "]" -nonewline;
             }
         }
         else {
             if ($this.logdate -eq $true) {
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
-                write-host -ForegroundColor gray "$($this.datestring)]" -NoNewline;
+                write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
+                write-host -Foregroundcolor yellow "]" -nonewline;
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.Separator))" -NoNewline;
             }
         }
         if ($this.submessage -eq $true) {
             switch ($type) {
-                success { 
-                    Write-Host -ForegroundColor green "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
-                }
-                error { 
-                    Write-Host -ForegroundColor red "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
-                }
-                info { 
-                    Write-Host -ForegroundColor blue "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
-                }
-                complete { 
-                    Write-Host -ForegroundColor darkgreen "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; 
-                }
-                action { 
-                    Write-Host -ForegroundColor yellow "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline;
-                 }
-                # find {}
-                # request{}
-               # response{}
+                success { Write-Host -ForegroundColor green "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; }
+                error { Write-Host -ForegroundColor red "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; }
+                info {Write-Host -ForegroundColor blue "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline; }
+                complete { Write-Host -ForegroundColor darkgreen "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline;}
+                action { Write-Host -ForegroundColor yellow "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline;}
+                default {Write-Host -ForegroundColor blue "$($this.NewIndent(5))$([powerunicode]::printByUnicode($this.icons.ArrowDiagDown)) " -nonewline;}
             }
         }
         else {
             switch ($this.type) {
-                success { 
-                    Write-Host -ForegroundColor green "$([powerunicode]::printByUnicode($this.icons.Success))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; 
-                }
-                error { 
-                    Write-Host -ForegroundColor red "$([powerunicode]::printByUnicode($this.icons.error))$([powerunicode]::printByUnicode($this.icons.LeftArrow))$([powerunicode]::printByUnicode($this.icons.error2))" -nonewline;
-                }
-                info { 
-                    Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($this.icons.info))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; 
-                }
-                complete { 
-                    Write-Host -ForegroundColor darkgreen "$([powerunicode]::printByUnicode($this.icons.complete))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; 
-                }
-                action { 
-                    Write-Host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.action))$([powerunicode]::printByUnicode($this.icons.leftArrow)) " -nonewline; 
-                }    
+                success { Write-Host -ForegroundColor green "$([powerunicode]::printByUnicode($this.icons.Success))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                error { Write-Host -ForegroundColor red "$([powerunicode]::printByUnicode($this.icons.error))$([powerunicode]::printByUnicode($this.icons.LeftArrow))$([powerunicode]::printByUnicode($this.icons.error2))" -nonewline;}
+                info { Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($this.icons.info))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                complete { Write-Host -ForegroundColor darkgreen "$([powerunicode]::printByUnicode($this.icons.complete))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }
+                action { Write-Host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.action))$([powerunicode]::printByUnicode($this.icons.leftArrow)) " -nonewline; }
+                default { Write-Host -ForegroundColor blue "$([powerunicode]::printByUnicode($this.icons.info))$([powerunicode]::printByUnicode($this.icons.LeftArrow)) " -nonewline; }   
             }
         }
         # Message Area -if Proptune Key is prsent ---------------
@@ -264,6 +245,7 @@ class logtastic {
                 info { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) i-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
                 complete { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) c-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
                 action { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) a-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
+                default { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) i-ex:$(get-elapsed -Datetime $this.date -Formattedstring)" }
             }         
         }
         else{
@@ -273,6 +255,7 @@ class logtastic {
                 info { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" }
                 complete { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator)) $([powerunicode]::printByUnicode($this.icons.Tick))" }
                 action { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" }
+                default { Write-Host -ForegroundColor DarkCyan " $([powerunicode]::printByUnicode($this.icons.Sperator))" }                
             }
         }
     }
