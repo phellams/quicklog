@@ -55,7 +55,7 @@ Function Write-LTMessage(){
         [Parameter(Mandatory = $false, Position = 1)]
         [ValidateSet('Error', 'Success', 'Info', 'Complete', 'Action', IgnoreCase = $true)]
         [alias('t')]
-        [string]$Type,
+        [string]$Type = 'info',
         [Parameter(Mandatory = $false)]
         [alias('n')]
         [string]$Name,
