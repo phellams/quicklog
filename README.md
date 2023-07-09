@@ -5,28 +5,29 @@
 <div align="center">
   <!--Name+Version-->
   <a href="https://gitlab.snowlab.tk/snoonx">
-    <img src="https://img.shields.io/badge/Maintainer-sgkens-lightblue??&stype=flat&logo=Personio&logoColor=blue">
+    <img src="https://img.shields.io/badge//-sgkens-orange?&stype=flat&logo=Personio&logoColor=blue">
   </a>
   <!--License-->
   <a href="https://gitlab.snowlab.tk/snoonx">
-    <img src="https://img.shields.io/badge/MIT-License-blue">
-  </a>
-  <!--Pipline-->
-  <a href="https://gitlab.snowlab.tk/powershell/logfustion/-/logfustion/main">
-    <img src="https://img.shields.io/gitlab/pipeline-status/powershell%2Flogtastic?gitlab_url=https%3A%2F%2Fgitlab.snowlab.tk&branch=main">
+    <img src="https://img.shields.io/badge/MIT-License-blue?style=&logo=unlicense&color=%23004481">
   </a>
   <!--Code Coverage-->
   <a href="https://gitlab.snowlab.tk/powershell/ccommits/-/commits/main">
     <img src="https://gitlab.snowlab.tk/powershell/ccommits/badgesmain/coverage.svg">
   </a>
   <!--Release-->
-  <a href="https://gitlab.snowlab.tk/powershell/ccommits/-/releases">
-    <img src="https://gitlab.snowlab.tk/powershell/ccommits/-/badges/release.svg">
+  <a href="https://gitlab.snowlab.tk/powershell/logtastic/-/releases">
+    <img src="https://gitlab.snowlab.tk/powershell/logtastic/-/badges/release.svg">
   </a>
 </div>
 <div style="font-weight:bold;" align="center" >
   <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/dist/Generic-powershell-24x23.png"> </br>
-  POWERSHELL MODULE
+  POWERSHELL MODULE <br>
+  <!--Pipline-->
+  <a href="https://gitlab.snowlab.tk/powershell/logtastic">
+    <img src="https://img.shields.io/gitlab/pipeline-status/powershell%2Flogtastic?gitlab_url=https%3A%2F%2Fgitlab.snowlab.tk&branch=main&logo=gitlab&label=build-pwsh-core
+">
+  </a>
 </div>
 
 <!--Separator-->
@@ -123,7 +124,7 @@ Write-LTMessage
   [[alias -nli]-NoLogIcon [Switch]] # Default $false eg. [ltm]🌟❱
 ```
 
-# Short hand via alias 
+## Short hand via alias 
 > If you prefer 
 
 ```Powershell
@@ -135,12 +136,12 @@ ltm -m "My Message String" -n ltm -t info -uc "#jahfu" -dtd -d
 ltm "My Message String" # 
 ```
 
-##  License & Author
-📑 **LogTastic** is released under the **MIT License**. See [LICENSE]() for more details.
+# 📑 License
+ **LogTastic** is released under the **MIT License**. See [LICENSE]() for more details.
 
-👤 Authored and maintained by *G K. Snow* @sgkens. 
-
-
+👤 Authored and maintained by *G K. Snow* @sgkens ShellTestic. 
 
 
-## 📌 CHANGELOG 
+
+
+# 📌 Changelog
