@@ -1,0 +1,27 @@
+
+# For the bage blue lisense 
+https://img.shields.io/github/license/sgkens/connectvi?style=for-the-badge&logo=unlicense&color=%23004481
+
+# For the bage Issues Open guthub
+https://img.shields.io/github/issues/sgkens/connectvi?style=for-the-badge
+
+# For the bage Pipeline Status
+https://img.shields.io/gitlab/pipeline-status/logtastic?gitlab_url=https%3A%2F%2Fgitlab.snowlab.tk&branch=main&style=for-the-badge&logo=gitlab
+
+
+# Pester Code Coverage
+# - Can ouput in jacoco format coverails.io supports this format
+# - Create powershell script in to upload pester Code Coverage to coverails.io
+https://pester.dev/docs/usage/code-coverage
+# Coverails Universal Coverage Reporter  - https://github.com/coverallsapp/coverage-reporter
+
+# Attribution
+Add for any examples of code that you have used or take insperation from.
+
+
+# HJson - Maybe Use
+- https://hjson.github.io
+- https://github.com/TomasBouda/hjson-powershell
+
+
+# Add https://app.slack.com 
