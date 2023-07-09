@@ -10,15 +10,21 @@
 *********************************************************************************************************#>
 function Get-Elapsed() {
     param(
-        [datetime] $Datetime,
-        [Parameter(ValueFromPipeline = $true)][switch] $Formattedstring = $false
+        [Parameter(mandatory = $true, Position = 0)]
+        [String] $From,
+        [Parameter(mandatory = $true, Position = 1)]
+        [String] $To,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true)]
+        [Switch] $Formattedstring = $false,
+        [Parameter(Mandatory = $false)]
+        [Switch] $AsObject = $false
 
     )
-    $timespan = new-timespan -start $datetime
+    $timespan = New-TimeSpan -Start $From -End $to
 
     $timespan_f = [pscustomobject]@{}
     # add members by default
-    $timespan_f | add-member -membertype noteproperty -name 'milliseconds' -value "$( [math]::round($timespan.milliseconds, 0) )Ms"
+    $timespan_f | add-member -membertype noteproperty -name 'milliseconds' -value "$( [math]::round($timespan.milliseconds, 2) )ms"
     $timespan_f | add-member -membertype noteproperty -name 'seconds' -value "$( [math]::round($timespan.totalseconds, 0) )s"
     $timespan_f | add-member -membertype noteproperty -name 'minutes' -value "$( [math]::round($timespan.totalminutes, 0) )m"
     # if more than 1 hour, add hours
@@ -29,6 +35,9 @@ function Get-Elapsed() {
     if ($timespan.totaldays -gt 1) {
         $timespan_f | add-member -membertype noteproperty -name 'days' -value "$( [math]::round($timespan.totaldays, 0) )d"
     }
+    if($true -eq $AsObject) { 
+        return $timespan
+    }
     if ($true -eq $Formattedstring) {
         [string]$timeblock # block string
         if ($timespan.totaldays -gt 1) { $timeblock += "$($timespan_f.days) " }
@@ -36,7 +45,7 @@ function Get-Elapsed() {
         $timeblock += "$($timespan_f.minutes) $($timespan_f.seconds) $($timespan_f.milliseconds)"
         return $timeblock
     }
-    else {
+    else{
         return $timespan_f
         
     }

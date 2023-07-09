@@ -10,6 +10,8 @@
 *********************************************************************************************************#>
 function Get-PropTune( ) {
     [CmdletBinding()]
+    [OutputType([hashtable])]
+    [Alias('pt')]
     param(
         [parameter(Mandatory = $true, Position = 0)]
         [string]$StringData
@@ -19,7 +21,7 @@ function Get-PropTune( ) {
         $formatted_stringdata = $stringdata -replace ','," `n "
     }
     process{
-
+        $hashedtdata = [ordered]@{}
         $hashedtdata = ConvertFrom-StringData -StringData $formatted_stringdata
         return $hashedtdata
     }
