@@ -84,7 +84,7 @@ Function Write-LogTastic(){
         else { $lti.DisablExectime() }
 
         # Set the log name
-        if($null -eq $name -or $name.length -eq 0 ) { $name = "ltm" }
+        if($null -eq $name -or $name.length -eq 0 ) { $name = "logt" }
         $lti.name = $name # Default lt
         
         # Set the unicode char
