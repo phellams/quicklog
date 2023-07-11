@@ -52,11 +52,11 @@ class logtastic {
         $this.icons = [PSCustomObject]@{
             Error           = "#2753" # ❓
             Error2          = "#2757" # ❗
-            Success         = "#1F530" # 🔰
+            Success         = "#1F7E2" # 🟢
            # Info            = "#1F300" # 🌀
-            Info            = "#1F4D2" # 📒
+            Info            = "#1F9FE" # 🧾
             Complete        = "#2705"  # ✅
-            Action          = "#1F364" # 🍤
+            Action          = "#1F505" # 🔅
             request         = "#1F310" # 🌐
             response        = "#1F311" # 🌑
             Speaker         = "#1F50A" # 🔊
@@ -90,6 +90,7 @@ class logtastic {
             Tick                 = "#2714"  # ✔
         }
         $this.logdate = $true
+        $this.Type = "info"
         $this.sm_indent = 5
         $this.StartTime = $this.GetLogTime()
         $this.LastLogTime = $this.GetLogTime()
@@ -119,9 +120,11 @@ class logtastic {
     [void] DisableLogIcon() {
         $this.logicon = $false
     }
+
     [void] EnableLogfile() {
         $this.logfile = $true
     }
+
     [void] DisableLogfile() {
         $this.logfile = $false
     }
@@ -129,20 +132,22 @@ class logtastic {
     [void] EnableExectime() {
         $this.Exectime = $true
     }
-    [void] DisablExectime() {
+
+    [void]DisableExectime() {
         $this.Exectime = $false
     }
 
-    [string] NewIndent([int]$indent) {
+    [string]NewIndent([int]$indent) {
         [string] $indentstring = " "
         $indentstring = $indentstring * $indent
         return $indentstring
     }
-    [string] GetLogTime() {
+
+    [string]GetLogTime() {
         return (Get-Date).toString()
     }
 
-    [void] EnableLogfile([string]$path) {
+    [void]EnableLogfile([string]$path) {
         if(test-path -path $path){
             Start-Transcript -path "$path\documents\$($this.name).log" -Append
         }else{
@@ -150,7 +155,7 @@ class logtastic {
         }
     }
 
-    [void]WriteLog([string]$message, [string]$type, [bool]$submessage) {
+    [void]WriteLog([string]$message, [string]$type = "info", [bool]$submessage) {
         $this.datestring = Get-Date -Format "hh:mm:ss"
         $this.CurrentLogTime = $this.GetLogTime()
         $this.message = $message
@@ -160,19 +165,20 @@ class logtastic {
         # Set default unicode if not set
         if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
         
+        # Start of log message
         write-host -foregroundcolor yellow "[" -nonewline;
 
+        # Enable/Disable log icon
         if($this.logicon -eq $true){
-            #? custom name of the log or apps name its used with
-            #write-host "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
             write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
             write-host -ForegroundColor gray "-" -nonewline;
             write-host -ForegroundColor gray "$($this.name)" -NoNewline;
         }
         else{
-            write-host -ForegroundColor yellow "$($this.name)-" -nonewline;
+            write-host -ForegroundColor white "$($this.name)-" -nonewline;
         }
-        #? If message is a submessage
+
+        # if submessage is true, do not print logtime
         if ($this.submessage -eq $true) {
             if ($this.logdate -eq $true) {
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
@@ -185,6 +191,9 @@ class logtastic {
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.logtime))" -NoNewline;
                 write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
                 write-host -Foregroundcolor yellow "]" -nonewline;
+                write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.Separator))" -NoNewline;
+            }else{
+                write-host -ForegroundColor yellow "]" -nonewline;
                 write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.icons.Separator))" -NoNewline;
             }
         }
