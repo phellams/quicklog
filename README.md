@@ -4,11 +4,11 @@
 </div>
 <div align="center">
   <!--Name+Version-->
-  <a href="https://gitlab.snowlab.tk/snoonx">
+  <a href="https://github.com/sgkens">
     <img src="https://img.shields.io/badge//-sgkens-orange?&stype=flat&logo=Personio&logoColor=blue">
   </a>
   <!--License-->
-  <a href="https://gitlab.snowlab.tk/snoonx">
+  <a href="https://github.com/sgkens/logtastic/">
     <img src="https://img.shields.io/badge/MIT-License-blue?style=&logo=unlicense&color=%23004481">
   </a>
   <!--Code Coverage-->
@@ -49,13 +49,8 @@ LogTastic is a PowerShell Module that outputs styled log messages to the console
  🪶  *Ouput* Custom Progress Bars  with [`Tadpol`]() \
  🪶  *Output* Colors Loaders with [`Tradel`]()
 
-> NOTE! - Colors are not shown correctly or will vary depending on your shell color pallet, ad. gif maker doesnt know powershell syntax
-<div align="center">
-  <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/terminal-gifs/shelltastic-terminal-gif.gif">
-</div>
-
 # 🥽 Install Module
-## 💼Clone Repository
+### 💼 Clone Repository
 
 🔹 Clone the repository from GitHub \
 🔹 Open a PowerShell(pwsh) session and navigate to the cloned repository directory. \
@@ -66,7 +61,7 @@ git clone https://gitlab.snowlab.tk/shelltastic/LogTastic.git
 cd LogTastic
 Import-Module -Name logtastic
 ```
-## 📦Package Repository
+### 📦Package Repository
  🌐 From - *Powershell: PSGallary* -📦[psgallary.com/sgkens/shelltastic.LogTastic]()
 ```Powershell
 # Install The Module from the PsGal
@@ -94,8 +89,12 @@ Import-Module -Name logtastic
 [How to Install Choloc](https) `choco.com/packages`
 
 # 🔧 Using the Module
+> NOTE! - Colors are not shown correctly or will vary depending on your shell color pallet, ad. gif maker doesnt know powershell syntax
+<div align="center">
+  <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/terminal-gifs/shelltastic-terminal-gif.gif">
+</div>
 
-### Example #1 - Minimum Parameters
+### Examplea - Minimum Parameters
 ```Powershell
 # Import Module
 Import-Module -Name LogTastic
@@ -135,6 +134,7 @@ ltm -m "My Message String" -n ltm -t info -uc "#jahfu" -dtd -d
 # Write-LTMessage - Minium params
 ltm "My Message String" # 
 ```
+
 
 # 📑 License
  **LogTastic** is released under the **MIT License**. See [LICENSE]() for more details.
