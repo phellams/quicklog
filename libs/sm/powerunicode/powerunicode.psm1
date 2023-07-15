@@ -7,7 +7,7 @@
 * Copyright:----- Copyright (c) 2022 gsnow
 * license: ------ MiT License
 #>
-class powerunicode{
+class PowerUnicode{
    
     static [string] $name
     static [string] $unicode
