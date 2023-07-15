@@ -49,20 +49,26 @@ LogTastic is a PowerShell Module that outputs styled log messages to the console
  🪶  *Ouput* Custom Progress Bars  with [`Tadpol`]() \
  🪶  *Output* Colors Loaders with [`Tradel`]()
 
-# 🥽 Install Module
-### 💼 Clone Repository
+# Install Module
+### 💼 Clone source
 
 🔹 Clone the repository from GitHub \
 🔹 Open a PowerShell(pwsh) session and navigate to the cloned repository directory. \
 🔹 Run the installation via the command below: 
+### 💼 Release
+
 ```powershell
 # Import the module
 git clone https://gitlab.snowlab.tk/shelltastic/LogTastic.git
 cd LogTastic
 Import-Module -Name logtastic
 ```
-### 📦Package Repository
- 🌐 From - *Powershell: PSGallary* -📦[psgallary.com/sgkens/shelltastic.LogTastic]()
+### Package Repository
+<img src="https://img.shields.io/badge/PSGallary-v0.1.0-yellow?style=for-the-badge&logo=Powershell&labelColor=blue&color=gray"/>
+
+📦[psgallary.com/sgkens/shelltastic.LogTastic]()
+
+
 ```Powershell
 # Install The Module from the PsGal
 Install-Module -Name logtastic -MinimumVersion 0.1.0
@@ -73,7 +79,9 @@ Import-Module -Name logtastic
 # Note! You May Need to change your `ExecutionPolicy`
 # Set-ExecutionPolicy
 ```
-🌐 From - *Choco: Chocolatory.org* - 📦[Chocolatory.org/sgkens/shelltastic.LogTastic]()
+<img src="https://img.shields.io/badge/Choco-v0.1.0-yellow?style=for-the-badge&logo=Chocolatey&labelColor=darkmagenta&color=gray"/>
+
+📦[Chocolatory.org/sgkens/shelltastic.LogTastic]()
 ```Powershell
 # Install The Module from the PsGal
 choco install logtastic --version 0.1.0
@@ -81,9 +89,6 @@ choco install logtastic --version 0.1.0
 # Import Module into you powershell session
 Import-Module -Name logtastic
 ```
-
-
-
 
 > Installing Chocolate Package Repositoy
 [How to Install Choloc](https) `choco.com/packages`
@@ -142,6 +147,10 @@ ltm "My Message String" #
 👤 Authored and maintained by *G K. Snow* @sgkens ShellTestic. 
 
 
-
-
 # 📌 Changelog
+
+## feat: add updated to loda
+aftesttsa;lkfasf
+
+
+## feat: add updated to loda
