@@ -2,57 +2,52 @@
 using module ..\Logtastic.psm1
 #! CMDLET TESTING
 
-#! Action
-Write-LogTastic -Message "Action Message" -Name "ltm" -Type "action"
-
-Write-LogTastic -Message "Action Message Custom unicode" -Name "ltm" -Type "action" -Unicode "#1F606"
-
-Write-LogTastic -Message "Action Message with proture @{pt:{prop=provalue}}" -Name "ltm" -Type "action"
-
-Write-LogTastic -Message "Action SubMessage" -Name "ltm" -Type "action" -SubMessage
-
-#! Info
-Write-LogTastic -Message "Info Message" -Name "ltm" -Type "Info"
-
-Write-LogTastic -Message "Info Message Custom unicode" -Name "ltm" -Type "Info" -Unicode "#1F606"
-
-Write-LogTastic -Message "Info SubMessage" -Name "ltm" -Type "Info" -SubMessage
-
-Write-LogTastic -Message "Info Message with proture @{pt:{prop=provalue}}" -Name "ltm" -Type "Info"
-
-#! success
-Write-LogTastic -Message "success Message" -Name "ltm" -Type "success"
-
-Write-LogTastic -Message "success Message Custom unicode" -Name "ltm" -Type "success" -Unicode "#1F606"
-
-Write-LogTastic -Message "success SubMessage" -Name "ltm" -Type "success" -SubMessage
-
-Write-LogTastic -Message "success Message with proture @{pt:{prop=provalue}}" -Name "ltm" -Type "success"
+$logname = "logt"
 
 
-#! error
-Write-LogTastic -Message "error Message" -Name "ltm" -Type "error"
+# Default Message with no param given
+Write-LogTastic "Default Message Type=info Message no param switch"
+Write-LogTastic -Message "Default Message Type=info with logname" -Name $logname
 
-Write-LogTastic -Message "error Message Custom unicode" -Name "ltm" -Type "error" -Unicode "#1F951"
+[string[]]$types = "info","action", "success", "error", "complete"
 
-Write-LogTastic -Message "error {ct:cyan:ColorTune} SubMessage" -Name "ltm" -Type "error" -SubMessage
+# #! Loop through types
+foreach($type in $types){
+  Write-LogTastic -Message "$type Message" -Name $logname -Type $type
+  Write-LogTastic -Message "$type Message Custom unicode" -Name $logname -Type $type -unicode "#1F517"
+  Write-LogTastic -Message "$type Message with propture @{pt:{prop=propvalue}}" -Name $logname -Type $type
+  Write-LogTastic -Message "$type Message with colortune {ct:blue:blue colored Text}" -Name $logname -Type $type  
+  Write-LogTastic -Message "$type SubMessage" -Name $logname -Type $type -SubMessage
+  Write-LogTastic -Message "$type Message With No Exection Time" -Name $logname -Type $type -NoExecTime
+  Write-LogTastic -Message "$type Message With No Emoji Icon" -Name $logname -Type $type -noLogIcon
+  Write-LogTastic -Message "$type Message With No Date/Time Stamp" -Name $logname -Type $type -noDateTime
+  Write-LogTastic -Message "$type Message With No Emoji Icon and No Date/Time Stamp" -Name $logname -Type $type -NoDateTime -NoLogIcon
 
-Write-LogTastic -Message "error {ct:cyan:ColorTune} Message with proture @{pt:{error=errorvalue}}" -Name "ltm" -Type "error"
+}
 
 
-#! complete
-Write-LogTastic -Message "complete Message" -Name "ltm" -Type "complete"
 
-Write-LogTastic -Message "complete Message Custom unicode" -Name "ltm" -Type "complete" -Unicode "#1F951"
-
-Write-LogTastic -Message "complete SubMessage" -Name "ltm" -Type "complete" -SubMessage
-
-Write-LogTastic -Message "complete Message with proture @{pt:{prop=provalue}}" -Name "ltm" -Type "complete"
-
-# Write-ltmM - Full message call class method message
-# Write-ltmInfo - Auto Set Info
-# Write-ltmError - Auto Set Error
-# Write-ltmComplete - Auto Set Complete
-# Write-ltmSuccess - Auto Set Success
-# Write-ltmAction - Auto Set Action
-# Write-ltmProgress - Auto Set Progress
+$max = 20
+$logname = "LogP"
+$submessage = $false
+for($i=1;$i -lt $max; $i++){
+  $barcount = get-random -Minimum 25 -Maximum 50
+  $RPercent = get-random -Minimum 0 -Maximum 100
+  if($submessage -eq $false){$submessage = $true}
+  else{$submessage = $false}
+  if($NoDateTime -eq $false){$NoDateTime = $true}
+  else{$NoDateTime = $false}
+  if($NoLogIcon -eq $false){$NoLogIcon = $true}
+  else{$NoLogIcon = $false}
+  Write-LogTasticProgress -BarCount $barcount `
+                          -Percent $RPercent `
+                          -Name $logname `
+                          -Status "Running" `
+                          -SubMessage $submessage `
+                          -Total "369mb" `
+                          -Bandwidth "467.2mb" `
+                          -Transferred "863.2gb" `
+                          -Eta "8Mins, 12Secs" `
+                          -NoDateTime $NoDateTime `
+                          -NoLogIcon $NoLogIcon
+}
