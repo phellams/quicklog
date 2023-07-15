@@ -1,7 +1,7 @@
-using module ..\logtastic_lib.psm1
 <#
 .SYNOPSIS
-Returns and instance of the LogTastic class.
+Installs PSReadLine module if not already installed.
+Installs Pscx # Custom 
 
 .DESCRIPTION
 Returns and instance of the LogTastic class, providing access to the LogTastic methods.
@@ -38,20 +38,19 @@ Function New-LogTastic() {
   [CmdletBinding()]
   [OutPutType([object])]
   param(
+    [Alias('n')]
     [Parameter(Mandatory = $false, Position = 0)]
     [string]$name,
+    [Alias('u')]
     [Parameter(Mandatory = $false, Position = 1)]
-    [string]$Unicode,
-    [Parameter(Mandatory = $false, Position = 2)]
-    [string]$LogDate,
-    [Parameter(Mandatory = $false, Position = 3)]
-    [string]$LogIcon
+    [string]$Unicode
   )
   process {
     if ($null -eq $name -or $name.length -eq 0 ) { $name = "ltm" }
     if ($null -eq $Unicode -or $Unicode.length -eq 0 ) { 
       $ltm = [Logtastic]::new($name, $null)
-    }else{
+    }
+    else {
       $ltm = [Logtastic]::new($name, $unicode)
     }
     return $ltm

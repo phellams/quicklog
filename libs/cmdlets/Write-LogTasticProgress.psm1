@@ -44,51 +44,58 @@ None. The function does not return any output. writes to console and log file. [
 .LINK
 logtastic (Module): https://github.com/sgkens/logtastic
 #>
-Function Write-LogTastic(){
+Function Write-LogTasticProgress() {
     [alias("wlt")]
     [CmdletBinding()]
     [OutPutType([void])]
     param(
-        [Alias('m')]
-        [Parameter(Mandatory = $true, Position = 0)]
-        [string]$Message,
-        [Parameter(Mandatory = $false, Position = 1)]
-        [ValidateSet('Error', 'Success', 'Info', 'Complete', 'Action', IgnoreCase = $true)]
-        [alias('t')]
-        [string]$Type = 'info',
-        [Parameter(Mandatory = $false)]
-        [alias('n')]
-        [string]$Name,
-        [Parameter(Mandatory = $false)]
-        [alias('uc')]
-        [string]$Unicode,
-        [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
-        [alias('sm')]
-        [switch]$SubMessage = $false,
-        [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
-        [alias('ndt')]
-        [switch]$NoDateTime = $false,
-        [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
-        [alias('nli')]
-        [switch]$NoLogIcon = $false,
-        [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
-        [alias('et')]
-        [switch]$NoExectime
+      [Parameter(Mandatory = $true, Position = 0)]
+      [alias('bc')]
+      [int]$barcount,
+      [Parameter(Mandatory = $true, Position = 1)]
+      [alias('p')]
+      [int]$percent,
+      [Parameter(Mandatory = $false)]
+      [alias('n')]
+      [string]$name,
+      [Parameter(Mandatory = $false)]
+      [alias('s')]
+      [string]$status,
+      [Parameter(Mandatory = $false)]
+      [alias('sm')]
+      [bool]$submessage = $false,
+      [Parameter(Mandatory = $false)]
+      [alias('t')]
+      [string]$total,
+      [Parameter(Mandatory = $false)]
+      [alias('bw')]
+      [String]$bandwidth,
+      [Parameter(Mandatory = $false)]
+      [alias('tfd')]
+      [string]$transferred,
+      [Parameter(Mandatory = $false)]
+      [string]$eta,
+      [Parameter(Mandatory = $false)]
+      [bool]$NoDateTime,
+      [Parameter(Mandatory = $false)]
+      [bool]$NoLogIcon
+
     )
     process{
         # Fetch the logtastic instance
         $lti = Get-LogTasticModuleInstance
 
-        # Enable or disable exectime
-        if ($NoExectime -eq $true) { $lti.DisableExectime() }
-        else { $lti.EnableExectime() }
+        # disable exectime
+        $lti.DisableExectime()
+
+        if($submessage){$submessage = $true} else {$submessage = $false}
 
         # Set the log name
         if($null -eq $name -or $name.length -eq 0 ) { $name = "logt" }
         $lti.name = $name # Default lt
         
         # Set the unicode char
-        if($null -ne $unicode -and $unicode.length -gt 0 ) { $lti.unicode = $unicode }
+        if($unicode -eq $true) { $lti.unicode = $unicode }
         else{ $lti.Unicode = "#1F365" }
 
         # Set the log type
@@ -99,8 +106,19 @@ Function Write-LogTastic(){
         if($NoLogIcon -eq $true){ $lti.disablelogicon() }
         else{ $lti.enablelogicon() }
 
+        $Props = [PSCustomObject]@{
+          barcount    = [int]$barcount
+          percent     = [int]$percent
+          status      = [String]$status
+          submessage  = [Bool]$submessage
+          total       = [String]$total
+          bandwidth   = [String]$bandwidth
+          transferred = [String]$transferred
+          eta         = [String]$eta
+        }
+
         # Write the message
-        $lti.WriteLog($message, $type, $submessage)
+        $lti.Writeprogress($Props)
     }
 }
-Export-ModuleMember -Function Write-LogTastic
+Export-ModuleMember -Function Write-LogTasticProgress

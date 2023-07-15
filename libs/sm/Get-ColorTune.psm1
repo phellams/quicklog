@@ -93,18 +93,3 @@ Function Get-ColorTune(){
     }
 }
 Export-ModuleMember -Function Get-ColorTune
-
-
-# Define the escape sequence for color formatting
-$escapeSequence = [char]27
-
-# Define color codes
-$colorRed = "${escapeSequence}[31m"    # Red
-$colorGreen = "${escapeSequence}[32m"  # Green
-$colorYellow = "${escapeSequence}[33m" # Yellow
-$colorReset = "${escapeSequence}[0m"   # Reset color
-
-# Output colored text
-Write-Output "${colorRed}This is red text.${colorReset}";Write-Output "";Write-Output "${colorGreen}This is green text.${colorReset}"
-Write-Output "${colorGreen}This is green text.${colorReset}"
-Write-Output "${colorYellow}This is yellow text.${colorReset}"
