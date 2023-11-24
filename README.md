@@ -1,6 +1,7 @@
 
+
 <div align="center" >
-    <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/4a6f5e8e8d9b2b7a240fe7c87c35776957a737f2/modules/logtastic/logtastic-logo-v2-title-inline-512x97.png"/>
+    <img width="250" src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/4a6f5e8e8d9b2b7a240fe7c87c35776957a737f2/modules/logtastic/logtastic-logo-v2-title-inline-512x97.png"/>
 </div>
 <div align="center">
   <!--Name+Version-->
@@ -20,12 +21,13 @@
     <img src="https://gitlab.snowlab.tk/powershell/logtastic/-/badges/release.svg">
   </a>
 </div>
+
 <div style="font-weight:bold;" align="center" >
-  <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/dist/Generic-powershell-24x23.png"> </br>
-  POWERSHELL MODULE <br>
+  <img width="14" src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/dist/Generic-powershell-24x23.png">
+   MODULE <br>
   <!--Pipline-->
   <a href="https://gitlab.snowlab.tk/powershell/logtastic">
-    <img src="https://img.shields.io/gitlab/pipeline-status/powershell%2Flogtastic?gitlab_url=https%3A%2F%2Fgitlab.snowlab.tk&branch=main&logo=gitlab&label=build-pwsh-core
+    <img src="https://img.shields.io/gitlab/pipeline-status/powershell%2Flogtastic?gitlab_url=https%3A%2F%2Fgitlab.snowlab.tk&branch=main&logo=gitlab&label=build
 ">
   </a>
 </div>

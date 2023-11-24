@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd"[]>
+<report name="Pester (11/21/2023 00:22:03)">
+  <sessioninfo id="this" start="1700526121664" dump="1700526123993" />
+  <package name="libs">
+    <class name="libs/logtastic_lib" sourcefilename="logtastic_lib.psm1">
+      <method name="&lt;script&gt;" desc="()" line="49">
+        <counter type="INSTRUCTION" missed="4" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="LogTastic" desc="()" line="55">
+        <counter type="INSTRUCTION" missed="0" covered="15" />
+        <counter type="LINE" missed="0" covered="12" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="SetConsoleEncoding" desc="()" line="123">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="EnableLogdate" desc="()" line="127">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="DisableLogdate" desc="()" line="131">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="EnableLogIcon" desc="()" line="135">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="DisableLogIcon" desc="()" line="139">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="EnableLogfile" desc="()" line="143">
+        <counter type="INSTRUCTION" missed="6" covered="0" />
+        <counter type="LINE" missed="4" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="DisableLogfile" desc="()" line="147">
+        <counter type="INSTRUCTION" missed="1" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="EnableExectime" desc="()" line="151">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="DisableExectime" desc="()" line="155">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="NewIndent" desc="()" line="159">
+        <counter type="INSTRUCTION" missed="0" covered="3" />
+        <counter type="LINE" missed="0" covered="3" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="GetLogTime" desc="()" line="165">
+        <counter type="INSTRUCTION" missed="0" covered="2" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="GetThemeProperty" desc="()" line="178">
+        <counter type="INSTRUCTION" missed="2" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="GetThemeUnicode" desc="()" line="184">
+        <counter type="INSTRUCTION" missed="0" covered="2" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="WriteLog" desc="()" line="188">
+        <counter type="INSTRUCTION" missed="22" covered="191" />
+        <counter type="LINE" missed="8" covered="90" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="BuildProgressBar" desc="()" line="486">
+        <counter type="INSTRUCTION" missed="0" covered="17" />
+        <counter type="LINE" missed="0" covered="7" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="Writeprogress" desc="()" line="496">
+        <counter type="INSTRUCTION" missed="0" covered="74" />
+        <counter type="LINE" missed="0" covered="42" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="35" covered="311" />
+      <counter type="LINE" missed="15" covered="163" />
+      <counter type="METHOD" missed="4" covered="14" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <sourcefile name="logtastic_lib.psm1">
+      <line nr="49" mi="4" ci="0" mb="0" cb="0" />
+      <line nr="55" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="56" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="57" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="58" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="71" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="112" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="113" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="114" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="115" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="116" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="117" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="119" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="123" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="127" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="131" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="135" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="139" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="143" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="147" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="151" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="155" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="159" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="160" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="161" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="165" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="169" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="170" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="172" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="178" mi="2" ci="0" mb="0" cb="0" />
+      <line nr="184" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="188" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="189" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="190" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="191" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="192" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="201" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="203" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="208" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="209" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="210" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="215" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="219" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="220" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="225" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="226" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="227" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="231" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="236" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="237" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="238" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="242" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="246" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="247" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="250" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="254" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="258" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="262" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="266" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="270" mi="4" ci="0" mb="0" cb="0" />
+      <line nr="275" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="278" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="282" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="286" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="290" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="294" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="298" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="304" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="305" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="306" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="307" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="308" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="309" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="312" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="331" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="332" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="333" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="334" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="335" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="336" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="341" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="342" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="343" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="344" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="345" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="346" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="347" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="351" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="354" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="355" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="357" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="361" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="362" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="363" mi="0" ci="6" mb="0" cb="0" />
+      <line nr="368" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="372" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="377" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="378" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="379" mi="0" ci="6" mb="0" cb="0" />
+      <line nr="383" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="387" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="392" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="393" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="394" mi="0" ci="6" mb="0" cb="0" />
+      <line nr="399" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="403" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="408" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="409" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="410" mi="0" ci="6" mb="0" cb="0" />
+      <line nr="415" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="419" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="424" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="425" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="426" mi="0" ci="6" mb="0" cb="0" />
+      <line nr="430" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="434" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="439" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="440" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="441" mi="6" ci="0" mb="0" cb="0" />
+      <line nr="445" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="452" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="455" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="459" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="463" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="467" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="471" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="475" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="478" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="480" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="486" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="487" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="488" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="489" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="490" mi="0" ci="5" mb="0" cb="0" />
+      <line nr="491" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="492" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="496" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="497" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="498" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="499" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="502" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="506" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="507" mi="0" ci="5" mb="0" cb="0" />
+      <line nr="508" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="509" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="510" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="511" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="512" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="513" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="514" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="515" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="516" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="517" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="518" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="519" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="520" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="521" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="522" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="523" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="524" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="527" mi="0" ci="5" mb="0" cb="0" />
+      <line nr="528" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="529" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="530" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="531" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="532" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="533" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="534" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="535" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="536" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="537" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="538" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="539" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="540" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="541" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="542" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="543" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="544" mi="0" ci="2" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="35" covered="311" />
+      <counter type="LINE" missed="15" covered="163" />
+      <counter type="METHOD" missed="4" covered="14" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <counter type="INSTRUCTION" missed="35" covered="311" />
+    <counter type="LINE" missed="15" covered="163" />
+    <counter type="METHOD" missed="4" covered="14" />
+    <counter type="CLASS" missed="1" covered="0" />
+  </package>
+  <package name="libs/cmdlets">
+    <class name="libs/cmdlets/Get-LogTasticModuleInstance" sourcefilename="cmdlets/Get-LogTasticModuleInstance.psm1">
+      <method name="&lt;script&gt;" desc="()" line="28">
+        <counter type="INSTRUCTION" missed="1" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <method name="Get-LogTasticModuleInstance" desc="()" line="36">
+        <counter type="INSTRUCTION" missed="0" covered="1" />
+        <counter type="LINE" missed="0" covered="1" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="1" covered="1" />
+      <counter type="LINE" missed="1" covered="1" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </class>
+    <class name="libs/cmdlets/New-LogTastic" sourcefilename="cmdlets/New-LogTastic.psm1">
+      <method name="New-LogTastic" desc="()" line="51">
+        <counter type="INSTRUCTION" missed="3" covered="6" />
+        <counter type="LINE" missed="3" covered="5" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="&lt;script&gt;" desc="()" line="63">
+        <counter type="INSTRUCTION" missed="1" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="4" covered="6" />
+      <counter type="LINE" missed="4" covered="5" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="libs/cmdlets/Write-LogTastic" sourcefilename="cmdlets/Write-LogTastic.psm1">
+      <method name="Write-LogTastic" desc="()" line="80">
+        <counter type="INSTRUCTION" missed="0" covered="17" />
+        <counter type="LINE" missed="0" covered="12" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="&lt;script&gt;" desc="()" line="106">
+        <counter type="INSTRUCTION" missed="1" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="1" covered="17" />
+      <counter type="LINE" missed="1" covered="12" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="libs/cmdlets/Write-LogTasticProgress" sourcefilename="cmdlets/Write-LogTasticProgress.psm1">
+      <method name="Write-LogTasticProgress" desc="()" line="77">
+        <counter type="INSTRUCTION" missed="2" covered="25" />
+        <counter type="LINE" missed="0" covered="21" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="&lt;script&gt;" desc="()" line="115">
+        <counter type="INSTRUCTION" missed="1" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="3" covered="25" />
+      <counter type="LINE" missed="1" covered="21" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <sourcefile name="cmdlets/Get-LogTasticModuleInstance.psm1">
+      <line nr="28" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="36" mi="0" ci="1" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="1" covered="1" />
+      <counter type="LINE" missed="1" covered="1" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="1" covered="0" />
+    </sourcefile>
+    <sourcefile name="cmdlets/New-LogTastic.psm1">
+      <line nr="51" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="52" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="53" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="54" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="56" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="57" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="58" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="60" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="63" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="4" covered="6" />
+      <counter type="LINE" missed="4" covered="5" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="cmdlets/Write-LogTastic.psm1">
+      <line nr="80" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="83" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="84" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="87" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="88" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="91" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="92" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="95" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="96" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="99" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="100" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="103" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="106" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="1" covered="17" />
+      <counter type="LINE" missed="1" covered="12" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="cmdlets/Write-LogTasticProgress.psm1">
+      <line nr="77" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="80" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="82" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="85" mi="1" ci="1" mb="0" cb="0" />
+      <line nr="86" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="89" mi="1" ci="1" mb="0" cb="0" />
+      <line nr="90" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="93" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="94" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="97" mi="0" ci="2" mb="0" cb="0" />
+      <line nr="98" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="100" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="101" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="102" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="103" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="104" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="105" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="106" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="107" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="108" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="112" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="115" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="3" covered="25" />
+      <counter type="LINE" missed="1" covered="21" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <counter type="INSTRUCTION" missed="9" covered="49" />
+    <counter type="LINE" missed="7" covered="39" />
+    <counter type="METHOD" missed="4" covered="4" />
+    <counter type="CLASS" missed="1" covered="3" />
+  </package>
+  <package name="libs/sm">
+    <class name="libs/sm/Get-ColorTune" sourcefilename="sm/Get-ColorTune.psm1">
+      <method name="Get-ColorTune" desc="()" line="31">
+        <counter type="INSTRUCTION" missed="42" covered="12" />
+        <counter type="LINE" missed="42" covered="12" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <method name="&lt;script&gt;" desc="()" line="95">
+        <counter type="INSTRUCTION" missed="1" covered="0" />
+        <counter type="LINE" missed="1" covered="0" />
+        <counter type="METHOD" missed="1" covered="0" />
+      </method>
+      <counter type="INSTRUCTION" missed="43" covered="12" />
+      <counter type="LINE" missed="43" covered="12" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="libs/sm/Get-Elapsed" sourcefilename="sm/Get-Elapsed.psm1">
+      <method name="Get-Elapsed" desc="()" line="23">
+        <counter type="INSTRUCTION" missed="12" covered="23" />
+        <counter type="LINE" missed="4" covered="14" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="12" covered="23" />
+      <counter type="LINE" missed="4" covered="14" />
+      <counter type="METHOD" missed="0" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <class name="libs/sm/Get-PropTune" sourcefilename="sm/Get-PropTune.psm1">
+      <method name="Get-PropTune" desc="()" line="20">
+        <counter type="INSTRUCTION" missed="0" covered="5" />
+        <counter type="LINE" missed="0" covered="5" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="0" covered="5" />
+      <counter type="LINE" missed="0" covered="5" />
+      <counter type="METHOD" missed="0" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
+    <sourcefile name="sm/Get-ColorTune.psm1">
+      <line nr="31" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="33" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="35" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="36" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="37" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="38" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="39" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="40" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="41" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="42" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="43" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="44" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="45" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="46" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="47" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="48" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="49" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="50" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="52" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="53" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="54" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="55" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="56" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="57" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="58" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="59" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="60" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="61" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="62" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="63" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="64" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="65" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="66" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="67" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="68" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="69" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="73" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="74" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="75" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="76" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="77" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="78" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="79" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="80" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="81" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="82" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="83" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="84" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="85" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="86" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="87" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="88" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="89" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="90" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="95" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="43" covered="12" />
+      <counter type="LINE" missed="43" covered="12" />
+      <counter type="METHOD" missed="1" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="sm/Get-Elapsed.psm1">
+      <line nr="23" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="25" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="27" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="28" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="29" mi="0" ci="3" mb="0" cb="0" />
+      <line nr="31" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="32" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="35" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="36" mi="3" ci="0" mb="0" cb="0" />
+      <line nr="38" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="39" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="41" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="42" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="43" mi="2" ci="1" mb="0" cb="0" />
+      <line nr="44" mi="2" ci="1" mb="0" cb="0" />
+      <line nr="45" mi="0" ci="4" mb="0" cb="0" />
+      <line nr="46" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="49" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="12" covered="23" />
+      <counter type="LINE" missed="4" covered="14" />
+      <counter type="METHOD" missed="0" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <sourcefile name="sm/Get-PropTune.psm1">
+      <line nr="20" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="21" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="24" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="25" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="26" mi="0" ci="1" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="0" covered="5" />
+      <counter type="LINE" missed="0" covered="5" />
+      <counter type="METHOD" missed="0" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <counter type="INSTRUCTION" missed="55" covered="40" />
+    <counter type="LINE" missed="47" covered="31" />
+    <counter type="METHOD" missed="1" covered="3" />
+    <counter type="CLASS" missed="0" covered="3" />
+  </package>
+  <counter type="INSTRUCTION" missed="99" covered="400" />
+  <counter type="LINE" missed="69" covered="233" />
+  <counter type="METHOD" missed="9" covered="21" />
+  <counter type="CLASS" missed="2" covered="6" />
+</report>

@@ -2,7 +2,7 @@
 using module ..\Logtastic.psm1
 #! CMDLET TESTING
 
-$logname = "logt"
+$logname = "Logtastic"
 
 
 # Default Message with no param given
@@ -14,21 +14,28 @@ Write-LogTastic -Message "Default Message Type=info with logname" -Name $logname
 # #! Loop through types
 foreach($type in $types){
   Write-LogTastic -Message "$type Message" -Name $logname -Type $type
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message Custom unicode" -Name $logname -Type $type -unicode "#1F517"
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message with propture @{pt:{prop=propvalue}}" -Name $logname -Type $type
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message with colortune {ct:blue:blue colored Text}" -Name $logname -Type $type  
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type SubMessage" -Name $logname -Type $type -SubMessage
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message With No Exection Time" -Name $logname -Type $type -NoExecTime
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message With No Emoji Icon" -Name $logname -Type $type -noLogIcon
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message With No Date/Time Stamp" -Name $logname -Type $type -noDateTime
+  start-sleep -Milliseconds 500
   Write-LogTastic -Message "$type Message With No Emoji Icon and No Date/Time Stamp" -Name $logname -Type $type -NoDateTime -NoLogIcon
-
 }
 
 
 
 $max = 20
-$logname = "LogP"
+$logname = "Logtastic"
 $submessage = $false
 for($i=1;$i -lt $max; $i++){
   $barcount = get-random -Minimum 25 -Maximum 50

@@ -1,0 +1,10 @@
+$moduleName = "logtastic"
+if(Get-command choco.exe){
+  write-host "Chocolatey is installed, skipping install"
+  write-host "Pushing to chocolatey https://community.chocolatey.org/"
+  choco.exe push .\dist\$moduleName.$($ModuleManifest.Version).nupkg --source https://community.chocolatey.org/
+  write-host "Pushed to chocolatey - Complete"
+}else{
+  write-host "Chocolatey is not installed, please install chocolatey https://community.chocolatey.org/"
+  break;
+}

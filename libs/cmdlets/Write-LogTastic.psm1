@@ -80,7 +80,7 @@ Function Write-LogTastic(){
         $lti = Get-LogTasticModuleInstance
 
         # Enable or disable exectime
-        if ($NoExectime -eq $true) { $lti.DisableExectime() }
+        if ($NoExectime  ) { $lti.DisableExectime() }
         else { $lti.EnableExectime() }
 
         # Set the log name

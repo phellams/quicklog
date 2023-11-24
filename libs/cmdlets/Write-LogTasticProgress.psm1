@@ -45,40 +45,31 @@ None. The function does not return any output. writes to console and log file. [
 logtastic (Module): https://github.com/sgkens/logtastic
 #>
 Function Write-LogTasticProgress() {
-    [alias("wlt")]
     [CmdletBinding()]
     [OutPutType([void])]
     param(
       [Parameter(Mandatory = $true, Position = 0)]
-      [alias('bc')]
       [int]$barcount,
       [Parameter(Mandatory = $true, Position = 1)]
-      [alias('p')]
       [int]$percent,
       [Parameter(Mandatory = $false)]
-      [alias('n')]
       [string]$name,
       [Parameter(Mandatory = $false)]
-      [alias('s')]
       [string]$status,
       [Parameter(Mandatory = $false)]
-      [alias('sm')]
-      [bool]$submessage = $false,
-      [Parameter(Mandatory = $false)]
-      [alias('t')]
+      [switch]$submessage = $false,
+      [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
       [string]$total,
       [Parameter(Mandatory = $false)]
-      [alias('bw')]
       [String]$bandwidth,
       [Parameter(Mandatory = $false)]
-      [alias('tfd')]
       [string]$transferred,
       [Parameter(Mandatory = $false)]
       [string]$eta,
-      [Parameter(Mandatory = $false)]
-      [bool]$NoDateTime,
-      [Parameter(Mandatory = $false)]
-      [bool]$NoLogIcon
+      [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
+      [switch]$NoDateTime,
+      [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
+      [switch]$NoLogIcon
 
     )
     process{

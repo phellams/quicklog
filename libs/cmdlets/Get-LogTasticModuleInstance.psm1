@@ -1,13 +1,14 @@
 using module ..\logtastic_lib.psm1
 <#
 .SYNOPSIS
-Returns and instance of the LogTastic class.
+Returns the instance of the LogTastic class.
 
 .DESCRIPTION
-Returns and instance of the LogTastic class, providing access to the LogTastic methods.
+Returns the instance of the LogTastic class, providing access to the LogTastic methods.
 
 .EXAMPLE
 $logtastic = Get-LogTasticModuleInstance
+(Get-LogTasticModuleInstance).WriteLog("This is a test message", "info", $false)
 
 This example returns an instance of the LogTastic class.
 

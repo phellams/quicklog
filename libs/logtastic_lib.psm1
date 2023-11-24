@@ -48,6 +48,7 @@ class logtastic {
     [String]$LastLogTime
     [PSCustomObject]$themeProperties = [PSCustomObject]@{ ascii=""; utfe=""; nerdf=""; custom=""; }
     [String]$theme
+    [string]$LogMessage
     
 
     LogTastic() {
@@ -118,53 +119,53 @@ class logtastic {
         $this.SetConsoleEncoding()
     }
 
-    [void]SetConsoleEncoding() {
+    [void]SetConsoleEncoding(){
         [Console]::OutputEncoding = [Text.Encoding]::UTF8
     }
 
-    [void]EnableLogdate() {
+    [void]EnableLogdate(){
         $this.logdate = $true
     }
 
-    [void]DisableLogdate() {
+    [void]DisableLogdate(){
         $this.logdate = $false
     }
 
-    [void]EnableLogIcon() {
+    [void]EnableLogIcon(){
         $this.logicon = $true
     }
 
-    [void]DisableLogIcon() {
+    [void]DisableLogIcon(){
         $this.logicon = $false
     }
 
-    [void] EnableLogfile() {
+    [void] EnableLogfile(){
         $this.logfile = $true
     }
 
-    [void]DisableLogfile() {
+    [void]DisableLogfile(){
         $this.logfile = $false
     }
 
-    [void]EnableExectime() {
+    [void]EnableExectime(){
         $this.Exectime = $true
     }
 
-    [void]DisableExectime() {
+    [void]DisableExectime(){
         $this.Exectime = $false
     }
 
-    [string]NewIndent([int]$indent) {
+    [string]NewIndent([int]$indent){
         [string] $indentstring = " "
         $indentstring = $indentstring * $indent
         return $indentstring
     }
 
-    [string]GetLogTime() {
+    [string]GetLogTime(){
         return (Get-Date).toString()
     }
 
-    [void]EnableLogfile([string]$path) {
+    [void]EnableLogfile([string]$path){
         if(test-path -path $path){
             Start-Transcript -path "$path\documents\$($this.name).log" -Append
         }else{
@@ -172,18 +173,18 @@ class logtastic {
         }
     
     }
-    [PSCustomObject]GetThemeProperty([string]$property) {
+    [PSCustomObject]GetThemeProperty([string]$property){
 
         return $this.icons.utfeprops.Where({$_.id -eq $property})
     }
     # Find the unicode for a theme property and convert it to a string for printing to the console
     # Powerunicode is a dependancy for this function
-    [String]GetThemeUnicode([string]$property) {
+    [String]GetThemeUnicode([string]$property){
 
         return [PowerUnicode]::PrintByUnicode($this.icons.utfeprops.Where({$_.id -eq $property}).unicode)
     }
 
-    [Void]WriteLog([string]$message, [string]$type = "info", [bool]$submessage) {
+    [Void]WriteLog([string]$message, [string]$type = "info", [bool]$submessage){
         $this.datestring = Get-Date -Format "hh:mm:ss"
         $this.CurrentLogTime = $this.GetLogTime()
         $this.message = $message
@@ -191,59 +192,111 @@ class logtastic {
         $this.submessage = $submessage
         
         # Set default unicode if not set
-       # if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
+        # if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
         
         # Start of log message
-        write-host -foregroundcolor yellow "[" -nonewline;
-
+        # write-host -foregroundcolor yellow "[" -nonewline;
+        
+        # New Method to un-used write-host
+        $this.LogMessage = "$(Get-ColorTune -text "[" -color Yellow)"
         # Enable/Disable log icon
         if($this.logicon -eq $true){
-            write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
-            write-host -ForegroundColor gray "-" -nonewline;
-            write-host -ForegroundColor gray "$($this.name)" -NoNewline;
+            # write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.unicode))" -nonewline;
+            # write-host -ForegroundColor gray "-" -nonewline;
+            # write-host -ForegroundColor gray "$($this.name)" -NoNewline;
+
+            $this.LogMessage += "$(Get-ColorTune -text $([powerunicode]::printByUnicode($this.unicode)) -Color Yellow)"
+            $this.LogMessage += "$(Get-ColorTune -text "-" -color Gray)"
+            $this.LogMessage += "$(Get-ColorTune -text $($this.name) -color Gray)"
         }
         else{
-            write-host -ForegroundColor white "$($this.name)" -nonewline;
+            # write-host -ForegroundColor white "$($this.name)" -nonewline;
+
+            $this.LogMessage += "$(Get-ColorTune -text $($this.name) -color Gray)"
         }
 
         # if submessage is true, print logtime
         if ($this.submessage -eq $true) {
             if ($this.logdate -eq $true) {
-                write-host -ForegroundColor yellow "$($this.GetThemeUnicode("LogTime"))" -NoNewline;
-                write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
-                write-host -foregroundcolor yellow "]" -nonewline;
+                # write-host -ForegroundColor yellow "$($this.GetThemeUnicode("LogTime"))" -NoNewline;
+                # write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
+                # write-host -foregroundcolor yellow "]" -nonewline;
+
+                $this.LogMessage += "$(Get-ColorTune -text $($this.GetThemeUnicode("LogTime")) -color Yellow)"
+                $this.LogMessage += "$(Get-ColorTune -text $($this.datestring) -color Gray)"
+                $this.LogMessage += "$(Get-ColorTune -text "]" -color Gray)"
             }
         }
         else {
             if ($this.logdate -eq $true) {
-                write-host -ForegroundColor yellow "$($this.GetThemeUnicode("LogTime"))" -NoNewline;
-                write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
-                write-host -Foregroundcolor yellow "]" -nonewline;
+                # write-host -ForegroundColor yellow "$($this.GetThemeUnicode("LogTime"))" -NoNewline;
+                # write-host -ForegroundColor gray "$($this.datestring)" -NoNewline;
+                # write-host -Foregroundcolor yellow "]" -nonewline;
                 # write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.GetThemeUnicode("logpointer")))" -NoNewline;
+                $this.LogMessage += "$(Get-ColorTune -Text $($this.GetThemeUnicode("LogTime")) -Color Yellow)"
+                $this.LogMessage += "$(Get-ColorTune -Text $($this.datestring) -Color Gray)"
+                $this.LogMessage += "$(Get-ColorTune -Text "]" -Color Yellow)"
             }else{
-                write-host -ForegroundColor yellow "]" -nonewline;
+                # write-host -ForegroundColor yellow "]" -nonewline;
                 # write-host -ForegroundColor yellow "$([powerunicode]::printByUnicode($this.GetThemeUnicode("logpointer")))" -NoNewline;
+                $this.LogMessage += "$(Get-ColorTune -Text "]" -Color Yellow)"
             }
         }
         # if submessage is true, do not print logtime
         if ($this.submessage -eq $true) {
             switch ($type) {
-                success { Write-Host -ForegroundColor green "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline; }
-                error { Write-Host -ForegroundColor red "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline; }
-                info { Write-Host -ForegroundColor blue "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline; }
-                complete { Write-Host -ForegroundColor darkgreen "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;}
-                action { Write-Host -ForegroundColor yellow "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;}
-                default { Write-Host -ForegroundColor blue "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;}
+                success { 
+                    # Write-Host -ForegroundColor green "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;
+                    $this.LogMessage += "$($this.NewIndent($this.sm_indent))$(Get-ColorTune -Text "$($this.GetThemeUnicode("submessage"))" -Color Green) "
+                }
+                error { 
+                    # Write-Host -ForegroundColor red "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;
+                    $this.LogMessage += "$($this.NewIndent($this.sm_indent))$(Get-ColorTune -Text "$($this.GetThemeUnicode("submessage"))" -Color red) "
+                }
+                info { 
+                    # Write-Host -ForegroundColor blue "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline; 
+                    $this.LogMessage += "$($this.NewIndent($this.sm_indent))$(Get-ColorTune -Text "$($this.GetThemeUnicode("submessage"))" -Color blue) "
+                }
+                complete { 
+                    # Write-Host -ForegroundColor darkgreen "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;
+                    $this.LogMessage += "$($this.NewIndent($this.sm_indent))$(Get-ColorTune -Text "$($this.GetThemeUnicode("submessage"))" -Color darkgreen) "
+                }
+                action { 
+                    # Write-Host -ForegroundColor yellow "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;
+                    $this.LogMessage += "$($this.NewIndent($this.sm_indent))$(Get-ColorTune -Text "$($this.GetThemeUnicode("submessage"))" -Color yellow) "
+                 }
+                default { 
+                    # Write-Host -ForegroundColor blue "$($this.NewIndent($this.sm_indent))$($this.GetThemeUnicode("submessage")) " -nonewline;
+                    $this.LogMessage += "$($this.NewIndent($this.sm_indent))$(Get-ColorTune -Text "$($this.GetThemeUnicode("submessage"))" -Color blue) "
+                }
             }
         }
         else {
             switch ($this.type) {
-                success { Write-Host -ForegroundColor green "$($this.GetThemeUnicode("success"))$($this.GetThemeUnicode("logpointer")) " -nonewline; }
-                error { Write-Host -ForegroundColor red "$($this.GetThemeUnicode("error"))$($this.GetThemeUnicode("logpointer"))$($this.GetThemeUnicode("error2"))" -nonewline; }
-                info { Write-Host -ForegroundColor blue "$($this.GetThemeUnicode("info"))$($this.GetThemeUnicode("logpointer")) " -nonewline; }
-                complete { Write-Host -ForegroundColor darkgreen "$($this.GetThemeUnicode("complete"))$($this.GetThemeUnicode("logpointer")) " -nonewline; }
-                action { Write-Host -ForegroundColor yellow "$($this.GetThemeUnicode("action"))$($this.GetThemeUnicode("logpointer")) " -nonewline; }
-                default { Write-Host -ForegroundColor blue "$($this.GetThemeUnicode("info"))$($this.GetThemeUnicode("logpointer")) " -nonewline; }   
+                success { 
+                    # Write-Host -ForegroundColor green "$($this.GetThemeUnicode("success"))$($this.GetThemeUnicode("logpointer")) " -nonewline;
+                    $this.LogMessage += "$($this.GetThemeUnicode("success"))$($this.GetThemeUnicode("logpointer")) "
+                }
+                error { 
+                    # Write-Host -ForegroundColor red "$($this.GetThemeUnicode("error"))$($this.GetThemeUnicode("logpointer"))$($this.GetThemeUnicode("error2"))" -nonewline;
+                    $this.LogMessage += "$($this.GetThemeUnicode("error"))$($this.GetThemeUnicode("logpointer"))$($this.GetThemeUnicode("error2"))"
+                }
+                info { 
+                    # Write-Host -ForegroundColor blue "$($this.GetThemeUnicode("info"))$($this.GetThemeUnicode("logpointer")) " -nonewline;
+                    $this.LogMessage += "$($this.GetThemeUnicode("info"))$($this.GetThemeUnicode("logpointer")) "
+                }
+                complete { 
+                    # Write-Host -ForegroundColor darkgreen "$($this.GetThemeUnicode("complete"))$($this.GetThemeUnicode("logpointer")) " -nonewline;
+                    $this.LogMessage += "$($this.GetThemeUnicode("complete"))$($this.GetThemeUnicode("logpointer")) "
+                }
+                action { 
+                    # Write-Host -ForegroundColor yellow "$($this.GetThemeUnicode("action"))$($this.GetThemeUnicode("logpointer")) " -nonewline;
+                    $this.LogMessage += "$($this.GetThemeUnicode("action"))$($this.GetThemeUnicode("logpointer")) "
+                }
+                default { 
+                    # Write-Host -ForegroundColor blue "$($this.GetThemeUnicode("info"))$($this.GetThemeUnicode("logpointer")) " -nonewline;
+                    $this.LogMessage += "$($this.GetThemeUnicode("info"))$($this.GetThemeUnicode("logpointer")) "
+                }   
             }
         }
 
@@ -256,124 +309,176 @@ class logtastic {
                 $text = $PropColorData.split(":")[1]
                 # inline color 
                 #$InlineTextColor = Get-ColorTune -text $text -color $color
-                $this.message = $this.message.replace($ColorElements[$i].value, (Get-ColorTune -Text $text -color $color))
+                $this.message = $this.message.replace($ColorElements[$i].value, $(Get-ColorTune -Text "$text" -color "$color"))
             }
          }
+
+        # $PropElements = [regex]::Matches($this.message, "(@\{pt:\{)(.*?)(\}\})")
+        # if ($PropElements) {
+        #     for ($i = 0; $i -lt $PropElements.count; $i++) {
+        #         $PropColorData = $PropElements[$i].value -replace "{pt:{", "" -replace "}}", ""
+        #         $propdata = Get-Proptune -StringData $PropColorData
+        #         $propname = $propdata.Name
+        #         $propvalue = $propdata.Value
+        #         # inline color 
+        #         # $InlineTextColor = Get-ColorTune -text $text -color $color
+        #         # $PropMessageBody = $this.message.replace($PropElements[$i], "o-$(Get-ColorTune -Text "$propname" -color "Yellow"):$(Get-ColorTune -Text "$propvalue" -color "blue")")
+        #         # $this.LogMessage += $PropMessageBody
+        #     }
+        #  }
+
         # Message Area -if Proptune Key is prsent ---------------
-        if ($this.message -like "*@{pt:{*") { $proptune_exploded_log = $this.message.split('@').split('}}') } else { $proptune_exploded_log = $null }
-        if ($null -ne $proptune_exploded_log) {
-
-            foreach ($emsp in $proptune_exploded_log) {
-                if ($emsp -like "*{pt:{*") {
-                    $emsp_pt_removed = $emsp -replace "{pt:{", ""
-                    $props = Get-PropTune -StringData $emsp_pt_removed
-                    foreach ($propname in $props.keys) {
-                        $value = $props[$propname]
-                        if ( $this.type -eq "error") {
-                            write-host "$([char]0x25CB)$([char]0x2500)" -foregroundColor yellow -nonewline; 
-                            write-host -foregroundColor Magenta "$propname`:" -nonewline; 
-                            write-host -foregroundColor darkgray "$value" -nonewline; 
-                            write-host "" -nonewline;
-                        }
-                        else {
-                            write-host "$([char]0x25CB)$([char]0x2500)" -foregroundColor yellow -nonewline; 
-                            write-host -foregroundColor Magenta "$propname`:" -nonewline; 
-                            write-host -foregroundColor darkgray "$value" -nonewline; 
-                            write-host "" -nonewline;
-                        }
-                    }
-                }
-                else {
-                    if ( $this.type -eq "error") {
-                        write-host -foregroundColor red "$($emsp)" -NoNewline;
-                    }
-                    else {
-                        write-host $emsp -NoNewline; 
-                    }
+        $PropElements = [regex]::Matches($this.message, "(\@\{pt:\{)(.*?)(\}\})")
+        if ($PropElements.count -ne 0){
+            foreach($emsp in $PropElements){
+                $emsp_cleaned = $emsp -replace "{pt:{", "" -replace "}}",""
+                $props = Get-PropTune -StringData $emsp_cleaned
+                foreach($propname in $props.keys){
+                    # write-host "$([char]0x25CB)$([char]0x2500)" -foregroundColor yellow -nonewline; 
+                    # write-host -foregroundColor Magenta "$propname`:" -nonewline; 
+                    # write-host -foregroundColor darkgray "$value" -nonewline; 
+                    # write-host "" -nonewline;
+                    $FormattedProp = "$(Get-ColorTune -Text "○-" -Color yellow)"
+                    $FormattedProp += "$(Get-ColorTune -Text "$($propname)" -Color Magenta)"
+                    $FormattedProp += ":"
+                    $FormattedProp += "$(Get-ColorTune -Text "$($props[$propname])" -Color Darkgray)"
+                    $FormattedProp += ""
+                    $this.message = $this.message -replace "$emsp", $FormattedProp
+                    $this.LogMessage += $this.message
                 }
             }
+        }else{
+            $this.LogMessage += $this.message
         }
-        elseif ($null -eq $proptune_exploded_log) {
-            if ( $this.type -eq "error") {
-                write-host -ForegroundColor red "$($this.message)" -nonewline;
-            }
-            else {
-                write-host $this.message -nonewline;
-            }
-        }
-        else {
-
-        }
+        <#-#MESSAGES#-#>
         if(!$this.submessage){
             switch ($this.type) {
                 success { 
                     if($this.Exectime){
-                        Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan "s-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan "s-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color Green)"
+
                     }else{
-                        write-host ""
+                        # write-host ""
+
+                        $this.LogMessage += ""
                     }
                 }
                 error { 
                     if($this.Exectime){
-                        Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan "e-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan "e-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color Red)"
                     }else{
-                        write-host ""
+                        # write-host ""
+
+                        $this.LogMessage += ""
                     }
                 }
                 info { 
                     if($this.Exectime){
-                        Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan "i-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan "i-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
+
                     }else{
-                        write-host ""
+                        # write-host ""
+
+                        $this.LogMessage += ""
                     }
                 }
                 complete { 
                     if($this.Exectime){
-                        Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan "c-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan "c-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
+
                     }else{
-                        write-host ""
+                        # write-host ""
+
+                        $this.LogMessage += ""
                     }
                 }
                 action { 
                     if($this.Exectime){
-                        Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan "a-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan "a-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
                     }else{
-                        write-host ""
+                        # write-host ""
+
+                        $this.LogMessage += ""
                     }
                 }
                 Default { 
                     if($this.Exectime){
-                        Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
-                        write-host -ForegroundColor DarkCyan "ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+                        # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("exectime"))" -nonewline;
+                        # write-host -ForegroundColor DarkCyan "ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
+
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
                     }else{
-                        write-host ""
+                        # write-host ""
+
+                        $this.LogMessage += ""
                     }
                 }
             }         
         }
+        <#-#SUBMESSAGES#-#>
         else{
             switch ($this.type) {
-                success { Write-Host " " }
-                error { Write-Host " " }
-                info { Write-Host " " }
-                complete { Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2")) $($this.GetThemeUnicode("tick"))" }
-                action { Write-Host " " }
-                default { Write-Host " " }                
+                success{ 
+                    # Write-Host " "
+                    $this.LogMessage += " "
+                }
+                error{ 
+                    # Write-Host " "
+                    $this.LogMessage += " "
+                }
+                info{
+                    # Write-Host " "
+                    $this.LogMessage += " "
+                }
+                complete{
+                    # Write-Host -ForegroundColor DarkCyan " $($this.GetThemeUnicode("seperator2")) $($this.GetThemeUnicode("tick"))"
+                    $this.LogMessage += " $($this.GetThemeUnicode("seperator2")) $($this.GetThemeUnicode("tick"))"
+                }
+                action{
+                    # Write-Host " "
+                    $this.LogMessage += " "
+                }
+                default{
+                    # Write-Host " "
+                    $this.LogMessage += " "
+                }                
             }
             $this.LastLogTime = $this.GetLogTime()
         }
-        # Set the last log message time allows to calculate the time difference between the logs
+        [console]::Write("$($this.LogMessage)`n")
+        # Set the last log message time allows to calculate athe time difference between the logs
     }
 
     [string]BuildProgressBar([int]$percent, [int]$barcount = 50){
@@ -412,8 +517,8 @@ class logtastic {
             write-host -ForegroundColor DarkGreen "$($stats.transferred)" -NoNewline;
             write-host -ForegroundColor Cyan "/" -NoNewline;
             write-host -ForegroundColor DarkGreen "$($stats.Total)" -NoNewline;
-             write-host -ForegroundColor blue ")" -NoNewline;
-             write-host -ForegroundColor blue "]" -NoNewline;
+            write-host -ForegroundColor blue ")" -NoNewline;
+            write-host -ForegroundColor blue "]" -NoNewline;
             write-host -ForegroundColor blue "$([char]0x2524)" -NoNewline;
             write-host -ForegroundColor blue "$($stats.status)" -NoNewline;
             write-host -ForegroundColor DarkMagenta " $($stats.eta)"

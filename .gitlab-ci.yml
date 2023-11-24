@@ -74,7 +74,7 @@ deploy-nugetgitlab-job:
   stage: deploy_nugetgitlab
   script:
     - pwsh.exe
-    - write-host -f green "template ci/cd config successful"
+    - .\CI-Send-PushToGitlab.ps1
   rules:
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_BUILD_STAGE == "test_pscore" && $CI_BUILD_STATUS == "success"'
 

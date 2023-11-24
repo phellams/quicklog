@@ -4,7 +4,7 @@
 RootModule = 'logtastic.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0'
+ModuleVersion     = '0.1.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -13,13 +13,13 @@ ModuleVersion = '0.1.0'
 GUID = '9d70e476-0214-4644-aaf6-cb4fadc1116c'
 
 # Author of this module
-Author = 'Garvey K. Snow'
+Author = 'Garvey k. Snow'
 
 # Company or vendor of this module
-CompanyName = 'shelltastic'
+CompanyName = 'davilion'
 
 # Copyright statement for this module
-Copyright = '2023 @ shelltastic. All rights reserved.'
+Copyright   = '2023 @ Davilion. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = @"
@@ -63,10 +63,16 @@ PowerShellVersion = '5.1'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Write-LogTastic','Get-LogTasticModuleInstance','Write-LogTasticProgress'
+FunctionsToExport = 'Write-LogTastic',
+                    'Get-LogTasticModuleInstance',
+                    'Write-LogTasticProgress',
+                    'New-Logtastic'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = 'Write-LogTastic','Get-LogTasticModuleInstance','Write-LogTasticProgress'
+CmdletsToExport = 'Write-LogTastic',
+                  'Get-LogTasticModuleInstance',
+                  'Write-LogTasticProgress',
+                  'New-LogTastic'
 
 # Variables to export from this module
 VariablesToExport = ''

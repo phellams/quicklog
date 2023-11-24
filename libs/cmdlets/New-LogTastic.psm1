@@ -50,9 +50,12 @@ Function New-LogTastic() {
   process {
     if ($null -eq $name -or $name.length -eq 0 ) { $name = "ltm" }
     if ($null -eq $Unicode -or $Unicode.length -eq 0 ) { 
-      $ltm = [Logtastic]::new($name, $null)
+      $ltm = New-Object -TypeName Logtastic
+      $ltm.disablelogicon()
     }else{
-      $ltm = [Logtastic]::new($name, $unicode)
+      $ltm = New-Object -TypeName Logtastic
+      $ltm.enablelogdate()
+      $ltm.enablelogicon()
     }
     return $ltm
   }
