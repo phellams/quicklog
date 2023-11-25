@@ -328,11 +328,14 @@ class logtastic {
         #  }
 
         # Message Area -if Proptune Key is prsent ---------------
-        $PropElements = [regex]::Matches($this.message, "(\@\{pt:\{)(.*?)(\}\})")
+        #$message_turned_slashes = $this.message  -replace "\\", "/" -replace "\\\\", "//"
+        $this.message = $this.message.Replace("\\", "/")
+        $PropElements = [regex]::Matches($this.message, "@\{pt:\{([^}]*)\}\}")
         if ($PropElements.count -ne 0){
             foreach($emsp in $PropElements){
-                $emsp_cleaned = $emsp -replace "{pt:{", "" -replace "}}",""
+                $emsp_cleaned = $emsp -replace "@{pt:{", "" -replace "}}", ""
                 $props = Get-PropTune -StringData $emsp_cleaned
+                $FormattedProp = ''
                 foreach($propname in $props.keys){
                     # write-host "$([char]0x25CB)$([char]0x2500)" -foregroundColor yellow -nonewline; 
                     # write-host -foregroundColor Magenta "$propname`:" -nonewline; 
@@ -343,10 +346,10 @@ class logtastic {
                     $FormattedProp += ":"
                     $FormattedProp += "$(Get-ColorTune -Text "$($props[$propname])" -Color Darkgray)"
                     $FormattedProp += ""
-                    $this.message = $this.message -replace "$emsp", $FormattedProp
-                    $this.LogMessage += $this.message
+                    $this.message = $this.message.replace($emsp, $FormattedProp)
                 }
             }
+            $this.LogMessage += $this.message
         }else{
             $this.LogMessage += $this.message
         }
