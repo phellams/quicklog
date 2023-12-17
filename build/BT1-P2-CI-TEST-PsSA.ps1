@@ -1,1 +1,1 @@
-Invoke-ScriptAnalyzer -Path .\dist\LogTastic -Recurse -severity warning -excluderule PSUseBOMForUnicodeEncodedFile, PSAvoidUsingWriteHost
+Invoke-ScriptAnalyzer -Path ..\dist\logtastic\ -Recurse -severity warning -excluderule PSUseBOMForUnicodeEncodedFile,PSAvoidUsingWriteHost

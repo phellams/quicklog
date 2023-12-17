@@ -1,18 +1,31 @@
-if (Get-Module -ListAvailable -name psmpacker | Where-Object { $_.version -eq "0.1.5.0" }) {
-    install-module -name psmpacker -repository powershell -MinimumVersion 0.1.5
-}
-import-module -name psmpacker -MinimumVersion 0.1.5
+#---CONFIG----------------------------
+
+# ModuleName
+$moduleName  = "logtastic"
+$psmpacker_v = '0.1.5'
+# Include
+$Files       = "logtastic.psm1", "logtastic.psd1", "LICENSE", "icon.png", "readme.md"
+$folders     = "libs"
+$exclude     = "Issue#1.txt"
+
+find-Module -Repository powershell -Name 'psmpacker' -MinimumVersion $psmpacker_v | Install-module | Import-Module
+#find-Module -Repository powershell -Name 'commitfusion' -MinimumVersion $psmpacker_v | Install-module | Import-Module
+#---CONFIG----------------------------
+
+
+# if (Get-Module -ListAvailable -name 'psmpacker' | Where-Object { $_.version -eq "$psmpacker_v.0" }) {
+#     install-module -name psmpacker -repository powershell -MinimumVersion 0.1.5
+# }
+# import-module -name psmpacker -MinimumVersion $psmpacker_v
 
 $AutoVersion = (Get-GitAutoVersion).Version
 
-Remove-Item -Path .\dist\CommitFusion -Recurse -Force -ErrorAction SilentlyContinue
-
 Build-Module -SourcePath .\ `
              -DestinationPath .\dist `
-             -Name "logtastic" `
+             -Name $moduleName  `
              -IncrementVersion None `
-             -FilesToCopy "logtastic.psm1","logtastic.psd1","LICENSE","icon.png" `
-             -ExcludedFiles "New-NerdIcon.ps1" `
-             -FoldersToCopy "libs" `
+             -FilesToCopy $Files `
+             -ExcludedFiles $exclude `
+             -FoldersToCopy $folders `
              -Manifest `
              -Version $AutoVersion
