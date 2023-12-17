@@ -1,11 +1,15 @@
 # Ignore node_modules directory
 # node_modules/
 
+coverage.xml
+testResults.xml
+
 # Ignore log files
 *.log
 
 # Ignore build output
 dist/
+
 
 # Ignore environment configuration files
 .env
