@@ -79,6 +79,8 @@ Function Write-LogTastic(){
         # Fetch the logtastic instance
         $lti = Get-LogTasticModuleInstance
 
+        if ($null -ne $lti.CurrentLogTime) { $lti.CurrentLogTime = $lti.GetLogTime() }
+
         # Enable or disable exectime
         if ($NoExectime  ) { $lti.DisableExectime() }
         else { $lti.EnableExectime() }
@@ -100,7 +102,8 @@ Function Write-LogTastic(){
         else{ $lti.enablelogicon() }
 
         # Write the message
-        $lti.WriteLog($message, $type, $submessage)
+        $lti.GenerateLog($message, $type, $submessage)
+        $lti.WriteLog()
     }
 }
 Export-ModuleMember -Function Write-LogTastic

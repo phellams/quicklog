@@ -57,8 +57,8 @@ Function Write-LogTasticProgress() {
       [Parameter(Mandatory = $false)]
       [string]$status,
       [Parameter(Mandatory = $false)]
-      [switch]$submessage = $false,
-      [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
+      [switch]$submessage,
+      [Parameter(Mandatory = $false)]
       [string]$total,
       [Parameter(Mandatory = $false)]
       [String]$bandwidth,
@@ -66,9 +66,9 @@ Function Write-LogTasticProgress() {
       [string]$transferred,
       [Parameter(Mandatory = $false)]
       [string]$eta,
-      [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
+      [Parameter(Mandatory)]
       [switch]$NoDateTime,
-      [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
+      [Parameter(Mandatory)]
       [switch]$NoLogIcon
 
     )

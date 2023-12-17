@@ -1,7 +1,7 @@
 <#  -------------------------------------------------------------------------------------------------------
 /** ******************************************************************************************************* 
 #!   NAME--------: proptune
-##   AUTHER------: mnoxx | codedus
+##   AUTHER------: sgkens | davilion
 #!   VERSION-----: 0.1
 #?   DESCRIPTION-: Wrapper function for ConvertFrom-StringData parses `n \\ , and returns hastable              
 *?   DEPENDANCIES:              

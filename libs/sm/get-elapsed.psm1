@@ -1,7 +1,7 @@
 <#  -------------------------------------------------------------------------------------------------------
 /** ******************************************************************************************************* 
 #!   NAME--------: Get-Elapsed
-##   AUTHER------: mnoxx | codedus
+##   AUTHER------: sgkens | davilion
 #!   VERSION-----: 0.1.0
 #?   DESCRIPTION-: Simple function return elapsed time from datetime             
 *?   SUNMODULES--:          
@@ -24,7 +24,7 @@ function Get-Elapsed() {
 
     $timespan_f = [pscustomobject]@{}
     # add members by default
-    $timespan_f | add-member -membertype noteproperty -name 'milliseconds' -value "$( [math]::round($timespan.milliseconds, 2) )ms"
+    $timespan_f | add-member -membertype noteproperty -name 'milliseconds' -value "$( [math]::round($timespan.Milliseconds, 3) )ms"
     $timespan_f | add-member -membertype noteproperty -name 'seconds' -value "$( [math]::round($timespan.totalseconds, 0) )s"
     $timespan_f | add-member -membertype noteproperty -name 'minutes' -value "$( [math]::round($timespan.totalminutes, 0) )m"
     # if more than 1 hour, add hours

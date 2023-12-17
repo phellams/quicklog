@@ -2,33 +2,7 @@ using module sm\Get-Elapsed.psm1
 using module sm\Get-PropTune.psm1
 using module sm\Get-ColorTune.psm1
 using module sm\powerunicode\powerunicode.psm1
-#*  ____       _      __   __
-#*  / __ \__ __(_)____/ /__/ / ___ ___ _
-#  / /_/ / // / // __/  '_/ /_/ _ Y _ `/
-#  \___\_\_,_/_/ \__/_/\_Y____|___|_, /
-#&                               /__
-<# ----------------------------------------o
-& CLASSNAME: [logtastic]
-~ VERSION: 0.1.0
-- AUTHOR: Snoonx @ SimpleScripts.dev
-- LICENSE: MIT   
-* DESCRIPTION:   
-    LogTastic is a PowerShell Module that outputs styled log message to the console. 
-    It is designed to be used in conjunction with other PowerShell modules to provide 
-    a consistent look and feel to the console output.
-  
-? DEPENDANCIES:
-    • Get-Elapsed
-    • Get-Proptune
-    • Get-ColorTune 
-    • PowerUnicode 
-? NOTES
-    This class is still in development and is not ready for production use.
-    @Colorful comments vscode url: 
-        - #? https://marketplace.visualstudio.com/items?itemName=bierner.colorful-comments
-    BUILD ENV
-        Powershellcore 7.3.1
-----------------------------------------o #>
+
 class logtastic {
     [String]$name
     [String]$type
@@ -112,11 +86,12 @@ class logtastic {
         $this.logdate = $true
         $this.Type = "info"
         $this.sm_indent = 5
-        $this.LastLogTime = $this.GetLogTime()
         if ($null -eq $this.unicode -or $this.unicode.Length -eq 0) {
             $this.unicode = "#1F365" # 🍥
         }
         $this.SetConsoleEncoding()
+        $this.CurrentLogTime = $this.GetLogTime()
+        $this.LastLogTime = $this.GetLogTime()
     }
 
     [void]SetConsoleEncoding(){
@@ -183,14 +158,21 @@ class logtastic {
 
         return [PowerUnicode]::PrintByUnicode($this.icons.utfeprops.Where({$_.id -eq $property}).unicode)
     }
-
-    [Void]WriteLog([string]$message, [string]$type = "info", [bool]$submessage){
-        $this.datestring = Get-Date -Format "hh:mm:ss"
+    [string]GetLogMessage(){
+        return $this.LogMessage
+    }
+    [void]WriteLog(){
         $this.CurrentLogTime = $this.GetLogTime()
+        [console]::Write("$($this.LogMessage)`n")
+        $this.LastLogTime = $this.CurrentLogTime
+        # Set the last log message time allows to calculate athe time difference between the logs
+    }
+
+    [Void]GenerateLog([string]$message, [string]$type = "info", [bool]$submessage){
+        $this.datestring = Get-Date -Format "hh:mm:ss"
         $this.message = $message
         $this.type = $type
         $this.submessage = $submessage
-        
         # Set default unicode if not set
         # if ($null -eq $this.unicode -or $this.unicode.length -eq 0) { $this.unicode = "#1F43D" }
         
@@ -363,7 +345,7 @@ class logtastic {
                         # write-host -ForegroundColor DarkCyan "s-ex:$(Get-Elapsed -From $this.LastLogTime -To $this.CurrentLogTime -Formattedstring)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
-                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color Green)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.GetLogtime()) -Formattedstring)" -Color Green)"
 
                     }else{
                         # write-host ""
@@ -379,7 +361,7 @@ class logtastic {
                         
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
-                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color Red)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.GetLogtime()) -Formattedstring)" -Color Red)"
                     }else{
                         # write-host ""
 
@@ -394,7 +376,7 @@ class logtastic {
                         
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
-                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.GetLogtime()) -Formattedstring)" -Color DarkCyan)"
 
                     }else{
                         # write-host ""
@@ -410,7 +392,7 @@ class logtastic {
 
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
-                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.GetLogtime()) -Formattedstring)" -Color DarkCyan)"
 
                     }else{
                         # write-host ""
@@ -426,7 +408,7 @@ class logtastic {
 
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
-                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $this.LastLogTime -To $this.GetLogtime() -Formattedstring)" -Color DarkCyan)"
                     }else{
                         # write-host ""
 
@@ -441,7 +423,7 @@ class logtastic {
 
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("seperator2"))" -Color DarkCyan)"
                         $this.LogMessage += " $(Get-ColorTune -Text "$($this.GetThemeUnicode("exectime"))" -Color DarkCyan)"
-                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.CurrentLogTime) -Formattedstring)" -Color DarkCyan)"
+                        $this.LogMessage += " $(Get-ColorTune -Text "ex" -color yellow):$(Get-ColorTune -Text "$(Get-Elapsed -From $($this.LastLogTime) -To $($this.GetLogtime()) -Formattedstring)" -Color DarkCyan)"
                     }else{
                         # write-host ""
 
@@ -480,8 +462,6 @@ class logtastic {
             }
             $this.LastLogTime = $this.GetLogTime()
         }
-        [console]::Write("$($this.LogMessage)`n")
-        # Set the last log message time allows to calculate athe time difference between the logs
     }
 
     [string]BuildProgressBar([int]$percent, [int]$barcount = 50){
