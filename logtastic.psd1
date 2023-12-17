@@ -4,7 +4,7 @@
 RootModule = 'logtastic.psm1'
 
 # Version number of this module.
-ModuleVersion     = '0.1.0.0'
+ModuleVersion     = '0.2.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -19,11 +19,14 @@ Author = 'Garvey k. Snow'
 CompanyName = 'davilion'
 
 # Copyright statement for this module
-Copyright   = '2023 @ Davilion. All rights reserved.'
+Copyright   = '2023 @ Garvey k. Snow. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = @"
-LogTastic is a PowerShell Module that outputs styled log message to the console. It is designed to be used in conjunction with other PowerShell modules to provide a consistent look and feel to the console output.
+LogTastic is a PowerShell Module that outputs styled log message to the console. 
+It is designed to be used in conjunction with other PowerShell modules to provide a consistent 
+look and feel to the console output, it used .net static class [System.Console] to output the
+styled message to the console.
 "@
 
 # Minimum version of the PowerShell engine required by this module
@@ -98,13 +101,13 @@ PrivateData = @{
         Tags = 'message','log, logging, module, freeware, powershell-core, cross-platform, progressbars, console','unicode', 'emoji', 'icons', 'icons-in-console', 'icons-in-powershell'
 
         # A URL to the license for this module.
-        LicenseUri = "https://choosealicense.com/licenses/mit"
+        LicenseUrl = "https://choosealicense.com/licenses/mit"
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://gitlab.snowlab.tk/powershell/logtastic.git'
-
+        ProjectUrl = 'https://gitlab.snowlab.tk/powershell/logtastic.git'
+        
         # A URL to an icon representing this module.
-        IconUri = 'https://gitlab.snowlab.tk/powershell/logtastic/-/blob/main/logo.svg'
+        IconUrl  = 'https://raw.githubusercontent.com/sgkens/resources/main/modules/nupsforge/nupsforge-logo-x128.png'
 
         # ReleaseNotes of this module
         ReleaseNotes = 'https://gitlab.snowlab.tk/powershell/logtastic/-/blob/main/Releases.md'
@@ -117,6 +120,22 @@ PrivateData = @{
 
         # External dependent modules of this module
         # ExternalModuleDependencies = @()
+        # DocsURL
+        Docsurl          = 'https://pages.gitlab.io/sgkens/logtastic'
+
+        # MailingListUrl
+        MailingListUrl   = 'https://github.com/sgkens/logtastic/issues'
+    
+        # projectSourceUrl
+        projectSourceUrl = 'https://github.com/sgkens/logtastic'
+
+        # bugTrackerUrl 
+        bugTrackerUrl    = 'https://github.com/sgkens/nupsforge/issues'
+
+        # Summary
+        Summary          = 'LogTastic is a PowerShell Module that outputs styled log message to the console.'
+
+
 
     } # End of PSData hashtable
 
