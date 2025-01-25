@@ -10,6 +10,7 @@ testResults.xml
 # Ignore build output
 dist/
 
+.vscode
 
 # Ignore environment configuration files
 .env
@@ -17,3 +18,7 @@ dist/
 # Ignore OS-generated files
 .DS_Store
 Thumbs.db
+
+# .net
+lib/ptoml/ptoml/bin/
+lib/ptoml/ptoml/obj/
