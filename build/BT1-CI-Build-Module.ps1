@@ -1,14 +1,11 @@
 #---CONFIG----------------------------
 
 # ModuleName
-$moduleName  = "logtastic"
-$psmpacker_v = '0.1.5'
-# Include
-$Files       = "logtastic.psm1", "logtastic.psd1", "LICENSE", "icon.png", "readme.md"
+$moduleName  = "quicklog"
+$Files       = "quicklog.psm1", "quicklog.psd1", "LICENSE", "icon.png", "readme.md"
 $folders     = "libs"
 $exclude     = "Issue#1.txt"
 
-find-Module -Repository powershell -Name 'psmpacker' -MinimumVersion $psmpacker_v | Install-module | Import-Module
 #find-Module -Repository powershell -Name 'commitfusion' -MinimumVersion $psmpacker_v | Install-module | Import-Module
 #---CONFIG----------------------------
 

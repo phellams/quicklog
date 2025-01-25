@@ -1,8 +1,6 @@
-import-module -name .\
-
 #---CONFIG----------------------------
 # Nupkg Powershell Forge
-$ModuleName = "nupsforge"
+$ModuleName = "logtastic"
 
 $ModuleManifest = Test-ModuleManifest -path .\dist\$modulename\$modulename.psd1
 #---CONFIG----------------------------
@@ -97,8 +95,8 @@ New-NupkgPackage -path .\dist\$ModuleName  -outpath .\dist\nuget
 
 # Create Zip With .nuspec file for PSGallery
 [console]::write( "Creating Zip File for PSGallery `n" )
-[console]::write( "Source: .\dist\$ModuleName\* `n" )
-[console]::write( "output: .\dist\psgal\$zipFileName `n" )
+[console]::write( "Source: .\dist\$($ModuleName)\* `n" )
+[console]::write( "output: .\dist\psgal\$($zipFileName) `n" )
 $zipFileName = "$($NuSpecParams.ModuleName).zip"
 compress-archive -path .\dist\$ModuleName\* -destinationpath .\dist\psgal\$zipFileName -compressionlevel optimal -update
 
