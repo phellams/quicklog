@@ -1,10 +1,10 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'logtastic.psm1'
+RootModule = 'quicklog.psm1'
 
 # Version number of this module.
-ModuleVersion     = '0.2.1.0'
+ModuleVersion     = '0.2.3.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -13,24 +13,19 @@ ModuleVersion     = '0.2.1.0'
 GUID = '9d70e476-0214-4644-aaf6-cb4fadc1116c'
 
 # Author of this module
-Author = 'Garvey k. Snow'
+Author = 'Garvey Snow'
 
 # Company or vendor of this module
-CompanyName = 'davilion'
+CompanyName = 'phellams'
 
 # Copyright statement for this module
 Copyright   = '2023 @ Garvey k. Snow. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = @"
-LogTastic is a PowerShell Module that outputs styled log message to the console. 
-It is designed to be used in conjunction with other PowerShell modules to provide a consistent 
-look and feel to the console output, it used .net static class [System.Console] to output the
-styled message to the console.
-"@
+Description = 'LogTastic is a PowerShell Module that outputs styled log message to the console.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.1'
+PowerShellVersion = '5.1' #TODO Sit CI/CD to testing powershell but failed test does not break the build
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -63,25 +58,33 @@ PowerShellVersion = '5.1'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-# NestedModules = @()
+NestedModules = @(
+    'libs\sm\Get-Elapsed.psm1',
+    'libs\sm\Get-PropTune.psm1',
+    'libs\sm\Get-ColorTune.psm1'
+)
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Write-LogTastic',
-                    'Get-LogTasticModuleInstance',
-                    'Write-LogTasticProgress',
-                    'New-Logtastic'
+FunctionsToExport = @(  
+    'Write-Quicklog',
+    'Write-QuicklogProgress',
+    'New-Quicklog',
+    'Get-QuicklogTypes'
+)
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = 'Write-LogTastic',
-                  'Get-LogTasticModuleInstance',
-                  'Write-LogTasticProgress',
-                  'New-LogTastic'
+CmdletsToExport = @()
 
 # Variables to export from this module
-VariablesToExport = ''
+VariablesToExport = @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = 'lt','nlt'
+AliasesToExport = @(
+    'qlqt', # alias for Write-QuicklogProgress
+    'qlwp' # alias for Get-QuicklogTypes
+    'qln' # alias for Get-QuicklogTypes
+    'qlm' # alias for New-Quicklog
+)
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -104,16 +107,16 @@ PrivateData = @{
         LicenseUrl = "https://choosealicense.com/licenses/mit"
 
         # A URL to the main website for this project.
-        ProjectUrl = 'https://gitlab.snowlab.tk/powershell/logtastic.git'
+        ProjectUrl = 'https://github.com/sgkens/logtastic'
         
         # A URL to an icon representing this module.
-        IconUrl  = 'https://raw.githubusercontent.com/sgkens/resources/main/modules/nupsforge/nupsforge-logo-x128.png'
+        IconUrl      = 'https://raw.githubusercontent.com/sgkens/resources/main/modules/quicklog/dist/v2/logtastic-logo-x128.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'https://gitlab.snowlab.tk/powershell/logtastic/-/blob/main/Releases.md'
+        ReleaseNotes     = 'https://github.com/sgkens/quicklog/-/blob/main/Releases'
 
         # Prerelease string of this module
-        # Prerelease = 'alpha1'
+        Prerelease = 'preview3'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false
@@ -121,16 +124,16 @@ PrivateData = @{
         # External dependent modules of this module
         # ExternalModuleDependencies = @()
         # DocsURL
-        Docsurl          = 'https://pages.gitlab.io/sgkens/logtastic'
+        Docsurl          = 'https://pages.gitlab.io/sgkens/quicklog'
 
         # MailingListUrl
-        MailingListUrl   = 'https://github.com/sgkens/logtastic/issues'
+        MailingListUrl   = 'https://github.com/sgkens/quicklog/issues'
     
         # projectSourceUrl
-        projectSourceUrl = 'https://github.com/sgkens/logtastic'
+        projectSourceUrl = 'https://github.com/sgkens/quicklog'
 
         # bugTrackerUrl 
-        bugTrackerUrl    = 'https://github.com/sgkens/nupsforge/issues'
+        bugTrackerUrl    = 'https://github.com/sgkens/quicklog/issues'
 
         # Summary
         Summary          = 'LogTastic is a PowerShell Module that outputs styled log message to the console.'
