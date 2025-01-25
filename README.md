@@ -1,158 +1,206 @@
+# Quicklog CACHE
 
+<img width="128" src="https://raw.githubusercontent.com/sgkens/resources/main/modules/Quicklog/dist/v2/Quicklog-logo-128x128.png"/>
 
-<div align="center" >
-    <img width="250" src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/4a6f5e8e8d9b2b7a240fe7c87c35776957a737f2/modules/logtastic/logtastic-logo-v2-title-inline-512x97.png"/>
-</div>
-<div align="center">
-  <!--Name+Version-->
-  <a href="https://github.com/sgkens">
-    <img src="https://img.shields.io/badge//-sgkens-orange?&stype=flat&logo=Personio&logoColor=blue">
-  </a>
-  <!--License-->
-  <a href="https://github.com/sgkens/logtastic/">
-    <img src="https://img.shields.io/badge/MIT-License-blue?style=&logo=unlicense&color=%23004481">
-  </a>
-  <!--Code Coverage-->
-  <a href="https://gitlab.snowlab.tk/powershell/ccommits/-/commits/main">
-    <img src="https://gitlab.snowlab.tk/powershell/ccommits/badgesmain/coverage.svg">
-  </a>
-  <!--Release-->
-  <a href="https://gitlab.snowlab.tk/powershell/logtastic/-/releases">
-    <img src="https://gitlab.snowlab.tk/powershell/logtastic/-/badges/release.svg">
-  </a>
-</div>
+# **Quicklog**
 
-<div style="font-weight:bold;" align="center" >
-  <img width="14" src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/dist/Generic-powershell-24x23.png">
-   MODULE <br>
-  <!--Pipline-->
-  <a href="https://gitlab.snowlab.tk/powershell/logtastic">
-    <img src="https://img.shields.io/gitlab/pipeline-status/powershell%2Flogtastic?gitlab_url=https%3A%2F%2Fgitlab.snowlab.tk&branch=main&logo=gitlab&label=build
-">
-  </a>
-</div>
+<!--license-->
+<a href="https://github.com/sgkens/Quicklog/">
+  <img src="https://img.shields.io/badge/MIT-License-blue?style=&logo=unlicense&color=purple"></a>
+<!--Code Factor-->
+<a href="https://www.codefactor.io/repository/github/sgkens/Quicklog/">
+  <img src="https://www.codefactor.io/repository/github/sgkens/Quicklog/badge"></a>
+<!--coverage-->
+<a href="https://coveralls.io/github/sgkens/Quicklog">
+  <img src="https://img.shields.io/coverallsCoverage/github/sgkens/Quicklog?branch=main"></a>
 
-<!--Separator-->
-<div align="center" >
-    <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/2d832bc7381b144e97555ba96dbb8aad8e6ccb62/modules/llline_v2-800x53.svg">
-</div>
+---
+**Quicklog** outputs styled log messages to the console. It is designed to be used in conjunction with other PowerShell modules and scripts to provide a consistent look and feel to the console output. Quicklog  uses ```system.console.write``` instead of `Write-Host` to output log string to the console.
 
-LogTastic is a PowerShell Module that outputs styled log messages to the console. It is designed to be used in conjunction with other PowerShell modules and scripts to provide a consistent look and feel to the console output.
+|🔨 BUILD STATUS|💼 RELEASES|
+|-|-|
+|<a href="https://gitlab.lab.davilion.online/powershell/Quicklog/-/pipelines"><img src="https://gitlab.lab.davilion.online/powershell/Quicklog/badges/main/pipeline.svg"></a>|<a href="https://gitlab.lab.davilion.online/powershell/Quicklog/-/releases"><img src="https://gitlab.lab.davilion.online/powershell/Quicklog/-/badges/release.svg"></a>|
 
-# 🧩 Module Features
- 🪶 *Enable*/*Disable* log name in log message template, Distinguish between running scripts \
- 🪶  *Enable*/*Disable* time/date in log message `[🐽-ltm⌚01:43:34]...` \
- 🪶  *Enable*/*Disable* custom utf-8 Unicode Icon Log name `[🐽-ltm]...` \
- 🪶  *Inject* utf-8 Unicode Emojis into log messages with `#` > `{ge:#unicode}` \
- 🪶  *Inject* colored text [***powershell color palet***] into log message with `{ct:colorName:texts}`  \
- 🪶  *Inject* Property Names And Value into log message via `@{pt:{Name=Value}}`  \
- 🪶  *Switch* outputs between `Parent` and `SubMessages` types \
- 🪶  *Ouput* Basic Progress Bars `[########>------------------>(25mb/sec | 6.88% Complete)]` \
- 🪶  *Ouput* Custom Progress Bars  with [`Tadpol`]() \
- 🪶  *Output* Colors Loaders with [`Tradel`]()
+|📦 PACKAGES|
+|-|
+|[<img src="https://img.shields.io/powershellgallery/v/csverify?include_prereleases&logo=powershell"/>](https://www.powershellgallery.com/packages/nupsforge)|
+|[<img src="https://img.shields.io/chocolatey/v/csverify?&logo=chocolatey"/>](https://Chocolatory.org/sgkens/Quicklog)|
 
-# Install Module
-### 💼 Clone source
+## 💠 Module Features
 
-🔹 Clone the repository from GitHub \
-🔹 Open a PowerShell(pwsh) session and navigate to the cloned repository directory. \
-🔹 Run the installation via the command below: 
+- **Enable**/**Disable** log name in log message template, Distinguish between running scripts
+- **Enable**/**Disable** time/date in log message `[🍥-logt⏰01:40:52]...`.
+- **Enable**/**Disable** custom utf-8 Unicode Icon Log name `[🍥-logt]...`.
+- **Add** colorized-preview into log messages with `#` > `{czh|chr|czg:#hex}`.
+- **Add** colored text [***powershell color palet***] into log message with `{ct:colorName:texts}`.
+- **Add** property names And value into log message via `@{pt:{Name=Value}}`
+- **Switch** outputs between `Parent` and `SubMessage` types.
+- **Ouput** basic progress bars `[########>------------------>(25mb/sec | 6.88% Complete)]`, for cuztomizable bars and loaders you can use [`Tadpol`](https://github.com/sgkens/tadpol).
+
+## 💠 Installing Module
+
+### 📥 Clone source
+
+1. Clone the repository from **GitHub** `git clone https://github.com/sgkens/Quicklog.git`
+2. Open a ***PowerShell*** session and navigate to the cloned repository directory.
+3. **Run** the *Module Import* via the command below:
+
+    ```powershell
+    # Import the module
+    git clone https://github.com/sgkens/Quicklog.git
+    cd Quicklog
+    import-module -Name Quicklog
+
+    # Get version
+    get-module -name Quicklog | select-object name,version
+
+    # Check imported module functions
+    get-module -Name Quicklog | select-object -expand exportedfunctions
+    get-module -Name Quicklog | select-object version
+    ```
+
+### 💼 Releases
+
+Download the latest release from the [**Releases**](https://github.com/sgkens/Quicklog/releases) page.
+
 ### 💼 Release
 
 ```powershell
 # Import the module
-git clone https://gitlab.snowlab.tk/shelltastic/LogTastic.git
-cd LogTastic
-Import-Module -Name logtastic
-```
-### Package Repository
-<img src="https://img.shields.io/badge/PSGallary-v0.1.0-yellow?style=for-the-badge&logo=Powershell&labelColor=blue&color=gray"/>
-
-📦[psgallary.com/sgkens/shelltastic.LogTastic]()
-
-
-```Powershell
-# Install The Module from the PsGal
-Install-Module -Name logtastic -MinimumVersion 0.1.0
-
-# Import Module into you powershell session
-Import-Module -Name logtastic
-
-# Note! You May Need to change your `ExecutionPolicy`
-# Set-ExecutionPolicy
-```
-<img src="https://img.shields.io/badge/Choco-v0.1.0-yellow?style=for-the-badge&logo=Chocolatey&labelColor=darkmagenta&color=gray"/>
-
-📦[Chocolatory.org/sgkens/shelltastic.LogTastic]()
-```Powershell
-# Install The Module from the PsGal
-choco install logtastic --version 0.1.0
-
-# Import Module into you powershell session
-Import-Module -Name logtastic
+git clone https://gitlab.snowlab.tk/shelltastic/Quicklog.git
+cd Quicklog
+Import-Module -Name Quicklog
 ```
 
-> Installing Chocolate Package Repositoy
-[How to Install Choloc](https) `choco.com/packages`
+## 🐥 Using the Module
 
-# 🔧 Using the Module
-> NOTE! - Colors are not shown correctly or will vary depending on your shell color pallet, ad. gif maker doesnt know powershell syntax
-<div align="center">
-  <img src="https://gitlab.snowlab.tk/sgkens/resources/-/raw/main/modules/logtastic/terminal-gifs/shelltastic-terminal-gif.gif">
-</div>
+#### 🔹`Write-Quicklog`
 
-### Examplea - Minimum Parameters
-```Powershell
-# Import Module
-Import-Module -Name LogTastic
+Used to write logmessages to the console.
 
-# Minimal Params
-Write-LTMessage -Name 'LT' -Message "My Message String" -Type info -Unicode "#jahfu"
-
-# All Params
-Write-LTMessage -Message "LTM Message with a type:Action" -Name "ltm" -Type Action
-# Ouput
-PS > '[🐽-ltm⏰01:43:34]🌟❱ LTM Message with a type:Action  a-ex: 0m 0s 71Ms'
-
-# SubMessage
-Write-LTMessage -Name 'LT' -Message "My Message String" -Type info -Unicode "#jahfu"
-```
-
-### Parameter List `Write-LTMessage`
 ```powershell
-Write-LTMessage
-  [[alias -n]-Name [String]] # Optional
-  [[alias -m]-Message [String]] # Manditory
-  [[alias -t]-Type [String][Action|Info|Success|Complete|Error]] # Optional Default info
-  [[alias -uc]-UniCode [String]"#code"] # Optional Default 'ltm' eg. [🐽-ltm⏰00:00:00]🌟❱
-  [[alias -sm ]-SubMessage [Switch]]# Default $false adds indentation and removes execution time
-  [[alias -ndt]-NoDatTime [Switch]] # Default $false eg. [🐽-ltm]🌟❱
-  [[alias -nli]-NoLogIcon [Switch]] # Default $false eg. [ltm]🌟❱
+Write-Quicklog [-Message] '<message>' [[-Type] '<type>']
+                [-Name '<name>'] [-Unicode '<unicode>'] 
+                [-SubMessage] [-NoDateTime] [-NoLogIcon] 
+                [-NoExectime] [-NoEmoji]
 ```
 
-## Short hand via alias 
-> If you prefer 
+```powershell
+# Minimal Params Default type=info
+Write-Quicklog -Message "My Message String" 
+# Output
+[🍥-logt⏰01:41:41]📝❯ My Message String 🔸 ⏱ ex: 0m 1s 0ms
 
-```Powershell
-# Write-LTMessage info short hand - Custom name and emoji
-ltm -m "My Message String" -n ltm -t info -uc "#jahfu" 
-# Write-LTMessage info short hand - no log date and no emoji icon
-ltm -m "My Message String" -n ltm -t info -uc "#jahfu" -dtd -d
-# Write-LTMessage - Minium params
-ltm "My Message String" # 
+# ------
+
+# Log Message with property in body specify color
+Write-Quicklog -Message "My {ct:red:Custom Text} @{pt:{Message=String}}" -Type Info -Name customname -Unicode "#2795"
+# Ouput
+[➕-customname⏰02:02:47]📝❯ My Custom Text ○-Message:String 🔸 ⏱ ex: 0m 1s 0ms
+
+# -----
+# SubMessage with specified emoji
+Write-Quicklog -Name 'LT' -Message "My Message String" -Type info -Unicode "#1F433" -SubMessage
+# Output
+[🐳-LT⏰02:00:44]     ↪ My Message String
 ```
 
+#### 🔹`New-Quicklog`
 
-# 📑 License
- **LogTastic** is released under the **MIT License**. See [LICENSE]() for more details.
+Returns a new instance of the Quicklog class.
 
-👤 Authored and maintained by *G K. Snow* @sgkens ShellTestic. 
+```powershell
+# using Quicklog class 
+# -> Generate Log Message
+$Quicklog = New-Quicklog
+$Quicklog.Theme = 'utfe' # default(utfe) avail: acsii(WIP), NerdF(WIP)
+$Quicklog.noemoji = $true # disable emojis and ouput (Get-LogTypes).logName
+$Quicklog.Name = 'logt'
+$Quicklog.enablelogdate()
+$Quicklog.disablelogdate()
+$Quicklog.unicode = # utfcode
+$Quicklog.disableLogIcon()
+$Quicklog.EnableLogIcon()
+$Quicklog.EnableExTime()
+$Quicklog.DisableExTime()
+$Quicklog.GenerateLog(
+    "MyMessage @{pt:{prop=in message {ct:red:this is colored red}}",
+    "info", # 'Error', 'Success', 'Info', 'Complete', 'Action','response','request','upload','download','read','write'
+    $false # $true for submessage
+)
+$Quicklog.WriteLog()
 
+# ----
 
-# 📌 Changelog
+# -> Generate Log Message
+$Quicklog.GenerateProgress(@{
+    barcount = 60
+    percent = 80
+    status = "Running"
+    submessage = $false
+    total = 100 
+    bandwidth = "1.2mb"
+    transfered = "86.2mb"
+    eta = ""
+})
+$Quicklog.WriteProgress()
 
-## feat: add updated to loda
-aftesttsa;lkfasf
+```
 
+#### 🔹`Get-LogTypes`
 
-## feat: add updated to loda
+Return a list of LogTypes as `system.object[]` **array**.
+
+```powershell
+Get-LogTypes
+
+# Output
+id       name     logname emoji
+--       ----     ------- -----
+Error    Error    ERR     ⭕
+Success  Success  SUC     🟢
+Info     Info     INF     📝
+Complete Complete COM     ✅
+Action   Action   ACT     🧿
+response response RES     🌎
+request  request  REQ     🌐
+upload   upload   UPL     ⏫
+download download DOW     ⏬
+```
+
+#### 🔹`New-QuicklogProGressBar`
+
+Ouputs a custom progress bar.
+
+```powershell
+Write-QuicklogProgress [-Barcount(Manditory) '<[int]count>']
+                        [-Percent(Manditory) '<[int]percentComplete>']
+                        [-Total(Manditory) '[int]<Total>'] 
+                        [-Name '<[string]Name>'] 
+                        [-Status '<secondsRemaining>'] 
+                        [-Submessage '<currentOperation>'] 
+                        [-Bandwidth '<[string]Bandwidth>'] 
+                        [-Transferred '<[string]Transferred>']
+                        [-Eta '<[string]EstimatedTime>']
+                        [-NoDateTime '<switch|bool>']
+                        [-NoLogIcon '<switch|bool>']
+
+```
+
+```powershell
+```
+
+#### 🔹`Get-QuicklogModuleInstance`
+
+Returns Module instance of Quicklog used by other cmdlets.
+
+```powershell
+(Get-QuicklogModuleInstance).GenerateLog(...
+(Get-QuicklogModuleInstance).WriteLog()
+```
+
+## 📑 License
+
+ **Quicklog** is released under the **MIT License**. See [LICENSE]() for more details.
+
+👤 Authored and maintained @sgkens.
