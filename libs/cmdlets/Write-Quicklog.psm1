@@ -1,10 +1,9 @@
-using module ..\logtastic_lib.psm1
 <#
 .SYNOPSIS
-Cmdlet function Write-LogTastic interface for LogTastic class.
+Cmdlet function Write-Quicklog interface for Quicklog class.
 
 .DESCRIPTION
-Cmdlet function Write-LogTastic is an interface for the Logtastic psm1 lib. It allows you to custom log messages to the console and log file.
+Cmdlet function Write-Quicklog is an interface for the Quicklog psm1 lib. It allows you to custom log messages to the console and log file.
 
 .PARAMETER Message
 The log message to be written.
@@ -28,7 +27,7 @@ Switch parameter to indicate if the message should include the date and time. (O
 Switch parameter to indicate if the message should include the log icon. (Optional)
 
 .EXAMPLE
-Write-LogTastic -Message "This is an information message" -Type "info" -Name "Log1"
+Write-Quicklog -Message "This is an information message" -Type "info" -Name "Log1"
 
 This example writes an information message to the log file with the name "Log1".
 
@@ -42,10 +41,10 @@ None. The function does not return any output. writes to console and log file. [
 - 
 
 .LINK
-logtastic (Module): https://github.com/sgkens/logtastic
+
 #>
-Function Write-LogTastic(){
-    [alias("wlt")]
+Function Write-Quicklog(){
+    [alias("qlm")]
     [CmdletBinding()]
     [OutPutType([void])]
     param(
@@ -53,15 +52,15 @@ Function Write-LogTastic(){
         [Parameter(Mandatory = $true, Position = 0)]
         [string]$Message,
         [Parameter(Mandatory = $false, Position = 1)]
-        [ValidateSet('Error', 'Success', 'Info', 'Complete', 'Action', IgnoreCase = $true)]
+        [ValidateSet('Error', 'Success', 'Info', 'Complete', 'Action','response','request','upload','download','read','write', IgnoreCase = $true)]
         [alias('t')]
         [string]$Type = 'info',
         [Parameter(Mandatory = $false)]
         [alias('n')]
         [string]$Name,
         [Parameter(Mandatory = $false)]
-        [alias('uc')]
-        [string]$Unicode,
+        [alias('ic')]
+        [string]$icon,
         [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
         [alias('sm')]
         [switch]$SubMessage = $false,
@@ -73,37 +72,41 @@ Function Write-LogTastic(){
         [switch]$NoLogIcon = $false,
         [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
         [alias('et')]
-        [switch]$NoExectime
+        [switch]$NoExectime,
+        [Parameter (ValueFromPipeline = $true, Mandatory = $false)]
+        [alias('noe')]
+        [switch]$NoEmoji
     )
     process{
         # Fetch the logtastic instance
-        $lti = Get-LogTasticModuleInstance
-
-        if ($null -ne $lti.CurrentLogTime) { $lti.CurrentLogTime = $lti.GetLogTime() }
+        $qlmi = $global:_quicklog.instance
+        if ($NoEmoji){
+            $qlmi.Noemoji = $true
+        }else{ $qlmi.Noemoji = $false }
 
         # Enable or disable exectime
-        if ($NoExectime  ) { $lti.DisableExectime() }
-        else { $lti.EnableExectime() }
+        if ($NoExectime) { $qlmi.DisableExectime() }
+        else { $qlmi.EnableExectime() }
 
         # Set the log name
-        if($null -eq $name -or $name.length -eq 0 ) { $name = "logt" }
-        $lti.name = $name # Default lt
+        if($null -eq $name -or $name.length -eq 0 ) { $name = "Ql" }
+        $qlmi.name = $name # Default lt
         
         # Set the unicode char
-        if($null -ne $unicode -and $unicode.length -gt 0 ) { $lti.unicode = $unicode }
-        else{ $lti.Unicode = "#1F365" }
+        if($null -ne $icon -and $icon.length -gt 0 ) { $qlmi.icon = $icon }
+        else{ $qlmi.icon = "default-icon" }
 
         # Set the log type
-        if($NoDateTime -eq $true){ $lti.disablelogdate() }
-        else { $lti.enablelogdate() }
+        if($NoDateTime -eq $true){ $qlmi.disablelogdate() }
+        else { $qlmi.enablelogdate() }
 
         # Set the log type
-        if($NoLogIcon -eq $true){ $lti.disablelogicon() }
-        else{ $lti.enablelogicon() }
+        if($NoLogIcon -eq $true){ $qlmi.disablelogicon() }
+        else{ $qlmi.enablelogicon() }
 
         # Write the message
-        $lti.GenerateLog($message, $type, $submessage)
-        $lti.WriteLog()
+        $qlmi.GenerateLog($message, $type, $submessage)
+        $qlmi.WriteLog()
     }
 }
-Export-ModuleMember -Function Write-LogTastic
+Export-ModuleMember -Function Write-Quicklog -Alias qlm
