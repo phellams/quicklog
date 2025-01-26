@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem "github-pages", group: :jekyll_plugins
+gem "webrick", "~> 1.8"
+gem "jekyll-avatar"
+gem "jekyll-sitemap"
+gem "jekyll-optional-front-matter", "~> 0.3.2"
+gem "jekyll-gist"

@@ -1,0 +1,34 @@
+repository: pages-themes/architect
+#author: # [name, email, web]
+remote_theme: pages-themes/architect@v0.2.0
+title: Logtastic
+description: Customizable log Message Generator
+show_downloads: true  # ["true" or "false" (unquoted) to indicate whether to provide a download URL]
+custom:
+  logo:         'https://raw.githubusercontent.com/sgkens/resources/main/modules/logtastic/dist/v2/logtastic-logo-128x128.png' 
+  dateupdated:  'Monday, 18 December 2023 9:21:21 P' 
+  license:      'https://img.shields.io/badge/MIT-License-blue?style=flat&logo=unlicense&color=#36013f' 
+  version:      'https://img.shields.io/powershellgallery/v/logtastic?include_prereleases&logo=powershell&label=Version&logoColor=white'
+  choco:        'https://img.shields.io/chocolatey/dt/logtastic?style=flat&logo=Chocolatey&labelColor=darkmagenta&color=gray'
+  psgallary:    'https://img.shields.io/powershellgallery/dt/logtastic?style=flat&logo=powershell&labelColor=blue&color=gray'
+  codefactor:   'https://www.codefactor.io/repository/github/sgkens/logtastic/badge'
+  pipeline:     'https://gitlab.lab.davilion.online/powershell/logtastic/badges/main/pipeline.svg'
+  prod:         '/commitfusion' # Dev / github pages /reponame
+  # dev:         '/'
+  
+#google_analytics: [Your Google Analytics tracking ID]
+plugins:
+  - jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-avatar
+  - jekyll-sitemap
+  - jekyll-optional-front-matter
+  - jekyll-gist
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+defaults:
+  -
+    scope:
+      path:            "assets/**/*.pdf"
+    values:
+      sitemap:         false
