@@ -29,7 +29,7 @@ function New-QuickLog() {
         [Parameter (ValueFromPipeline = $true, Mandatory = $false, Position = 4)]
         [switch]$SubMessage = $false
     )
-    if ($message -like "*@{pt:{*") { $message_exploded = $message.split('@').split('}}') } else { $message_exploded = $null }
+    if($message -like "*@{pt:{*") { $message_exploded = $message.split('@').split('}}') } else { $message_exploded = $null }
     if($null -eq $Unicode -or $unicode.length -eq 0 ){ $Unicode = "#1F438" }
     #TODO: Change to psobject 
     $unicodeError = "#1FAD6"
