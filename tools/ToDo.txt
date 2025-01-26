@@ -1,4 +1,0 @@
-Refactor Excutions time for non submessage messages
-  - TimeSpan is not reset as its set and not reset in the logtastic class instance
-Issue: Calculation of timespace for the excecution time between logmessage output is needs to be refactored as 
-       it takes the new-timespace from the orginal
