@@ -10,7 +10,7 @@ testResults.xml
 # Ignore build output
 dist/
 
-.vscode
+.vscode/
 
 # Ignore environment configuration files
 .env
