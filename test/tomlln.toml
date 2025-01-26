@@ -1,0 +1,12 @@
+# Default  toml configuration file
+# --------------------------------
+
+Theme = "utf8-ascii"
+version = "1.0.0"
+
+[repo-name]
+name = "myname" # toml supports commet json doesn't
+description = "mydescription"
+logname = "mylogname"
+color = "cyan"
+id = "myid"
